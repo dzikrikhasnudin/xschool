@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Courses\CourseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +26,7 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::resource('kelas', CourseController::class);
+    Route::get('kelas/penalaran-umum/watch', [CourseController::class, 'watch'])->name('kelas.watch');
 });

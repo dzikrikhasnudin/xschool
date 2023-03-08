@@ -8,7 +8,13 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-welcome />
+                <ol class="list-disc">
+                    <li><a href="{{ route('kelas.show', 'penalaran-umum') }}">Penalaran Umum</a></li>
+                    <li><a href="{{ route('kelas.show', 'penalaran-umum') }}">Pengetahuan dan Pemahaman Umum</a></li>
+                    <li><a href="{{ route('kelas.show', 'penalaran-umum') }}">Pemahaman Bacaan dan Menulis</a></li>
+                    <li><a href="{{ route('kelas.show', 'penalaran-umum') }}">Pengetahuan Kuantitatif</a></li>
+                </ol>
+
             </div>
         </div>
     </div>
