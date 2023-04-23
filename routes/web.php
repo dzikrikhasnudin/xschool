@@ -28,5 +28,5 @@ Route::middleware([
     })->name('dashboard');
 
     Route::resource('kelas', CourseController::class);
-    Route::get('kelas/penalaran-umum/watch', [CourseController::class, 'watch'])->name('kelas.watch');
+    Route::get('kelas/{course}/{lesson}', [CourseController::class, 'play'])->name('course.playing');
 });
