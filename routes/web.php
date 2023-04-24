@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Courses\ChapterController;
 use App\Http\Controllers\Courses\CourseController;
+use App\Http\Controllers\Courses\LessonController;
+use App\Http\Livewire\IndexPelajaran;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +32,6 @@ Route::middleware([
 
     Route::resource('kelas', CourseController::class);
     Route::get('kelas/{course}/{lesson}', [CourseController::class, 'play'])->name('course.playing');
+    Route::resource('bab', ChapterController::class);
+    Route::resource('pelajaran', LessonController::class);
 });

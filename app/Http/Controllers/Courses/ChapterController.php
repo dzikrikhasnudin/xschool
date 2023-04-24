@@ -4,33 +4,21 @@ namespace App\Http\Controllers\Courses;
 
 use Illuminate\Http\Request;
 use App\Models\Courses\Course;
-use App\Models\Courses\Lesson;
 use App\Models\Courses\Chapter;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
-class LessonController extends Controller
+class ChapterController extends Controller
 {
-
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $lessons = Lesson::with('chapter')->get();
         $courses = Course::all();
-
-        return view('courses.lessons.index', [
-            'lessons' => $lessons,
-            'courses' => $courses
-        ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return view('courses.chapters.index', compact('courses'));
     }
 
     /**
@@ -38,26 +26,22 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-
         if (!Gate::allows('manage-course')) {
             abort(403);
         }
 
         $validator = Validator::make($request->all(), [
             'name' => 'string',
-            'video' => 'string',
         ]);
 
         if ($validator->fails()) {
-            Alert::toast('Lessons must be string', 'error');
+            Alert::toast('Chapter must be string', 'error');
             return back();
         }
 
-        Lesson::create([
+        Chapter::create([
             'name' => $request->name,
-            'video' => $request->video,
-            'chapter_id' => $request->chapter_id,
+            'course_id' => $request->course_id,
         ]);
 
         Alert::toast('Data berhasil disimpan', 'success');

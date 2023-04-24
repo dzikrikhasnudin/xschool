@@ -15,7 +15,6 @@ class AuthServiceProvider extends ServiceProvider
 {
 
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
         Course::class => CoursePolicy::class
     ];
 
@@ -24,6 +23,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         Gate::define('manage-course', function (User $user) {
+            return $user->roles === 'administrator';
+        });
+        Gate::define('manage-chapter', function (User $user) {
             return $user->roles === 'administrator';
         });
     }

@@ -36,7 +36,7 @@ class CourseController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'name' => 'unique:courses,name',
+            'name' => 'string|unique:courses,name',
         ]);
 
         if ($validator->fails()) {

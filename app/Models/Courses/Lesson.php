@@ -15,4 +15,9 @@ class Lesson extends Model
     protected $fillable = [
         'name', 'video', 'chapter_id'
     ];
+
+    public function chapter()
+    {
+        return $this->belongsTo(Chapter::class);
+    }
 }
