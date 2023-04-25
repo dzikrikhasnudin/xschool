@@ -18,9 +18,11 @@
                     <x-nav-link href="{{ route('kelas.index') }}" :active="request()->routeIs('kelas.index')">
                         {{ __('Kelas') }}
                     </x-nav-link>
+                    @can('manage-chapter')
                     <x-nav-link href="{{ route('bab.index') }}" :active="request()->routeIs('bab.index')">
                         {{ __('Bab') }}
                     </x-nav-link>
+                    @endcan
                     <x-nav-link href="{{ route('pelajaran.index') }}" :active="request()->routeIs('pelajaran.index')">
                         {{ __('Pelajaran') }}
                     </x-nav-link>

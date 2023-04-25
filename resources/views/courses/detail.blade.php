@@ -99,7 +99,7 @@
                             <img src="{{ asset('assets/img/result-not-found.png') }}" alt="result not found"
                                 class="w-full object-cover px-4">
                             <figcaption class="flex flex-col text-center justify-center py-4">
-                                <h4 class="font-bold text-2xl text-slate-800">Oops! Data Tidak Ditemukan</h4>
+                                <h4 class="font-bold text-2xl text-slate-800">Oops! Materi belum tersedia</h4>
                                 <a href="{{ route('kelas.index') }}"
                                     class="bg-slate-400 px-4 py-2 text-white rounded-full hover:bg-slate-600 text-center mt-3 w-1/2 mx-auto transition duration-300 ease-in-out">Kembali</a>
                             </figcaption>

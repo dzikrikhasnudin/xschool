@@ -17,8 +17,11 @@ class ChapterController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
-        return view('courses.chapters.index', compact('courses'));
+        if (!Gate::allows('manage-chapter')) {
+            abort(403);
+        }
+
+        return view('courses.chapters.index');
     }
 
     /**
@@ -26,7 +29,7 @@ class ChapterController extends Controller
      */
     public function store(Request $request)
     {
-        if (!Gate::allows('manage-course')) {
+        if (!Gate::allows('manage-chapter')) {
             abort(403);
         }
 

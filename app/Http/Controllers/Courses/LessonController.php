@@ -16,26 +16,9 @@ class LessonController extends Controller
 
     public function index()
     {
-        $lessons = Lesson::with('chapter')->get();
-        $courses = Course::all();
-
-        return view('courses.lessons.index', [
-            'lessons' => $lessons,
-            'courses' => $courses
-        ]);
+        return view('courses.lessons.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         // dd($request->all());

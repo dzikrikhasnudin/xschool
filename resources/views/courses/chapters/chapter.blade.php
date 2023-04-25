@@ -19,9 +19,9 @@
             @endif
 
             @if ($statusUpdate)
-                <livewire:update-pelajaran :courses="$courses" :search="$search"></livewire:update-pelajaran>
+                <livewire:update-chapter :courses="$courses" :search="$search"></livewire:update-chapter>
             @else
-                <livewire:tambah-pelajaran :courses="$courses"></livewire:tambah-pelajaran>
+                <livewire:tambah-chapter :courses="$courses"></livewire:tambah-chapter>
             @endif
 
             <hr class="my-4">
@@ -56,13 +56,10 @@
                                 No
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Judul Pelajaran
+                                Judul Bab
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                BAB
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Tautan Video
+                                Kelas
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Action
@@ -73,31 +70,29 @@
                         @php
                             $index = 1;
                         @endphp
-                        @foreach ($lessons as $lesson)
-                            <tr class="bg-white border-b">
+                        @foreach ($chapters as $chapter)
+                            <tr class="bg-white border-b 0">
                                 <td scope="col" class="p-2 text-center">
                                     {{ $index++ }}
                                 </td>
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $lesson->name }}
+                                    {{ $chapter->name }}
                                 </th>
                                 <td class="px-6 py-4">
-                                    {{ $lesson->chapter->name }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $lesson->video }}
+                                    {{ $chapter->course->name }}
                                 </td>
                                 <td class="px-6 py-4 flex gap-2 text-white" x-data="{ scroll: () => { $el.scrollTo(0, $el.scrollHeight); } }">
                                     {{-- Edit --}}
-                                    <button wire:click="getLesson({{ $lesson->id }})" x-intersect="scroll()"
+                                    <button wire:click="getChapter({{ $chapter->id }})"
+                                    x-intersect="scroll()"
                                         class="bg-yellow-400 px-2 py-1 rounded hover:bg-yellow-500 transition duration-300">
                                         <i class="fa-solid fa-pen-to-square m-auto "></i>
                                     </button>
                                     @php
-                                        $lessonId = $lesson->id;
+                                        $chapterId = $chapter->id;
                                     @endphp
-                                    <button  wire:click="$emit('triggerDelete',{{ $lessonId }})"
+                                    <button  wire:click="$emit('triggerDelete', {{ $chapterId }})"
                                     class="bg-red-600 px-2 py-1 rounded hover:bg-red-700 transition duration-300">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
@@ -109,7 +104,7 @@
             </div>
 
             <div class="py-3">
-                {{ $lessons->links() }}
+                {{ $chapters->links() }}
             </div>
         </div>
     </div>
@@ -120,10 +115,10 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
-        @this.on('triggerDelete', lessonId => {
+        @this.on('triggerDelete', chapterId => {
             Swal.fire({
                 title: 'Yakin hapus data?',
-                text: 'Data pelajaran akan dihapus permanen!',
+                text: 'Data bab akan dihapus permanen!',
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: '#E12425',
@@ -134,7 +129,7 @@
          //if user clicks on delete
                 if (result.value) {
              // calling destroy method to delete
-                    @this.call('destroy', lessonId)
+                    @this.call('destroy', chapterId)
              // success response
                     Swal.fire({title: 'Data pelajaran berhasil dihapus!', icon: 'success'});
                 } else {

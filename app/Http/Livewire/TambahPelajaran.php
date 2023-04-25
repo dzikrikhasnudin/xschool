@@ -23,7 +23,7 @@ class TambahPelajaran extends Component
 
         $this->validate([
             'name' => 'required|min:3',
-            'video' => 'required'
+            'video' => 'required|min:11'
         ]);
 
         $lesson = Lesson::create([
