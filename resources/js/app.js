@@ -5,6 +5,8 @@ import Alpine from 'alpinejs';
 import focus from '@alpinejs/focus';
 import collapse from '@alpinejs/collapse'
 import intersect from '@alpinejs/intersect'
+import Swal from 'sweetalert2';
+
 
 window.Alpine = Alpine;
 

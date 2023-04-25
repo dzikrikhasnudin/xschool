@@ -13,6 +13,8 @@ class UpdatePelajaran extends Component
     public $chapter_id;
     public $video;
     public $lessonId;
+    public $statusUpdate = false;
+    public $search;
 
     protected $listeners = [
         'getLesson' => 'showLesson'
@@ -40,6 +42,7 @@ class UpdatePelajaran extends Component
                 'chapter_id' => $this->chapter_id,
                 'video' => $this->video
             ]);
+
 
             $this->resetInput();
 

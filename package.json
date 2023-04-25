@@ -22,6 +22,7 @@
         "@alpinejs/collapse": "^3.12.0",
         "@alpinejs/intersect": "^3.12.0",
         "@fortawesome/fontawesome-free": "^6.3.0",
-        "flowbite": "^1.6.4"
+        "flowbite": "^1.6.4",
+        "sweetalert2": "^11.7.3"
     }
 }
