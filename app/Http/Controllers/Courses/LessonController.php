@@ -21,7 +21,6 @@ class LessonController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
 
         if (!Gate::allows('manage-course')) {
             abort(403);
@@ -46,37 +45,5 @@ class LessonController extends Controller
         Alert::toast('Data berhasil disimpan', 'success');
 
         return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

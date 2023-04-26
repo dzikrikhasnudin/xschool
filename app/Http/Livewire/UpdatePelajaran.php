@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Courses\Lesson;
 use Livewire\Component;
+use App\Models\Courses\Lesson;
+use Illuminate\Support\Facades\Gate;
 
 class UpdatePelajaran extends Component
 {
@@ -35,6 +36,10 @@ class UpdatePelajaran extends Component
 
     public function update()
     {
+        if (!Gate::allows('manage-lesson')) {
+            abort(403);
+        }
+
         if ($this->lessonId) {
             $lesson = Lesson::find($this->lessonId);
             $lesson->update([

@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Courses\Lesson;
+use Illuminate\Support\Facades\Gate;
 
 class TambahPelajaran extends Component
 {
@@ -20,6 +21,10 @@ class TambahPelajaran extends Component
 
     public function store()
     {
+
+        if (!Gate::allows('manage-lesson')) {
+            abort(403);
+        }
 
         $this->validate([
             'name' => 'required|min:3',

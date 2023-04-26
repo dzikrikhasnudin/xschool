@@ -2,8 +2,9 @@
 
 namespace App\Models\Courses;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Course extends Model
 {
@@ -22,5 +23,15 @@ class Course extends Model
     public function chapters()
     {
         return $this->hasMany(Chapter::class)->orderBy('id', 'ASC');
+    }
+
+    public function scopePublished(Builder $query): void
+    {
+        $query->where('status', '=', 'published');
+    }
+
+    public function scopeDraft(Builder $query): void
+    {
+        $query->where('status', '=', 'draft');
     }
 }

@@ -18,9 +18,14 @@ class CourseController extends Controller
 {
     public function index()
     {
+        if (Auth::user()->roles == 'student') {
+            $courses = Course::published()->latest()->get();
+        } else {
+            $courses = Course::all();
+        }
 
         return view('courses.index', [
-            'courses' => Course::all()
+            'courses' => $courses
         ]);
     }
 

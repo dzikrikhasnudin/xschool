@@ -30,8 +30,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::resource('kelas', CourseController::class);
+    Route::resource('kelas', CourseController::class)->except(['edit']);
     Route::get('kelas/{course}/{lesson}', [CourseController::class, 'play'])->name('course.playing');
-    Route::resource('bab', ChapterController::class);
-    Route::resource('pelajaran', LessonController::class);
+    Route::resource('bab', ChapterController::class)->except(['update', 'destroy', 'edit', 'show']);
+    Route::resource('pelajaran', LessonController::class)->except(['update', 'destroy', 'edit', 'show']);
 });
