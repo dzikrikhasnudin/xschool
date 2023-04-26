@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class IndexChapter extends Component
 {
+
     use WithPagination;
 
     public $statusUpdate = false;

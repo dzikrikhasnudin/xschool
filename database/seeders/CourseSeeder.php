@@ -17,7 +17,7 @@ class CourseSeeder extends Seeder
         $data = [
             [
                 'name' => 'Penalaran Umum',
-                'thumbnail' => 'http://image.com',
+                'thumbnail' => null,
                 'slug' => Str::slug('Penalaran Umum'),
                 'status' => "published",
                 "created_at" => now(),
@@ -25,7 +25,7 @@ class CourseSeeder extends Seeder
             ],
             [
                 'name' => 'Pengetahuan dan Pemahaman Umum',
-                'thumbnail' => 'http://image.com',
+                'thumbnail' => null,
                 'slug' => Str::slug('Pengetahuan dan Pemahaman Umum'),
                 'status' => "draft",
                 "created_at" => now(),
@@ -33,7 +33,7 @@ class CourseSeeder extends Seeder
             ],
             [
                 'name' => 'Pemahaman Bacaan dan Menulis',
-                'thumbnail' => 'http://image.com',
+                'thumbnail' => null,
                 'slug' => Str::slug('Pemahaman Bacaan dan Menulis'),
                 'status' => "published",
                 "created_at" => now(),
@@ -41,7 +41,7 @@ class CourseSeeder extends Seeder
             ],
             [
                 'name' => 'Pengetahuan Kuantitatif',
-                'thumbnail' => 'http://image.com',
+                'thumbnail' => null,
                 'slug' => Str::slug('Pengetahuan Kuantitatif'),
                 'status' => "draft",
                 "created_at" => now(),

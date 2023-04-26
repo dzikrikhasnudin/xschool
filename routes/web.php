@@ -4,6 +4,7 @@ use App\Http\Controllers\Courses\ChapterController;
 use App\Http\Controllers\Courses\CourseController;
 use App\Http\Controllers\Courses\LessonController;
 use App\Http\Livewire\IndexPelajaran;
+use App\Http\Livewire\UserIndex;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,4 +35,5 @@ Route::middleware([
     Route::get('kelas/{course}/{lesson}', [CourseController::class, 'play'])->name('course.playing');
     Route::resource('bab', ChapterController::class)->except(['update', 'destroy', 'edit', 'show']);
     Route::resource('pelajaran', LessonController::class)->except(['update', 'destroy', 'edit', 'show']);
+    Route::get('user', UserIndex::class)->name('user.index');
 });
