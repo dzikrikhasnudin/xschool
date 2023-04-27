@@ -18,7 +18,7 @@ class CourseController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->roles == 'student') {
+        if (Auth::user()->hasRole('Student')) {
             $courses = Course::published()->latest()->get();
         } else {
             $courses = Course::all();
@@ -36,7 +36,7 @@ class CourseController extends Controller
 
     public function store(Request $request)
     {
-        if (!Gate::allows('manage-course')) {
+        if (!Gate::allows('course_create')) {
             abort(403);
         }
 
@@ -74,8 +74,16 @@ class CourseController extends Controller
     {
         $course = Course::where('slug', $slug)->with('chapters')->first();
 
+        if (!$course->chapters->count() or !$course->chapters[0]->lessons->count()) {
+            $firstLesson = false;
+        } else {
+            $firstLesson = $course->chapters[0]->lessons[0];
+        }
 
-        return view('courses.detail', compact('course'));
+        return view('courses.detail', [
+            'course' => $course,
+            'firstLesson' => $firstLesson
+        ]);
     }
 
     public function play($course, $lesson)
@@ -107,7 +115,7 @@ class CourseController extends Controller
 
         $course = Course::findOrFail($id);
 
-        if (!Gate::allows('manage-course')) {
+        if (!Gate::allows('course_update')) {
             abort(403);
         }
 

@@ -14,53 +14,52 @@
     <div class="py-6 lg:flex lg:flex-row flex-col-reverse flex">
         <div class="w-full mx-auto sm:px-6 lg:px-2 lg:w-2/5">
 
-            @can('manage-course')
-                <div class="bg-white p-4 mx-4 rounded-lg mb-3 flex justify-between">
-                    <p class="text-lg font-semibold">Pengelolaan Kelas</p>
-                    <div class="flex gap-1 text-white">
-                        <a href="#" class="bg-teal-500 px-2 py-1 rounded hover:bg-teal-700 transition duration-300">
-                            <i class="fa-solid fa-file-circle-plus"></i>
-                        </a>
-                        <a href="#"
-                            class="bg-yellow-400 px-2 py-1 rounded hover:bg-yellow-500 transition duration-300">
-                            <i class="fa-solid fa-pen-to-square m-auto "></i>
-                        </a>
-                        <a href="#" class="bg-red-600 px-2 py-1 rounded hover:bg-red-700 transition duration-300">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
-                    </div>
+            @can('course_edit')
+            <div class="bg-white p-4 mx-4 rounded-lg mb-3 flex justify-between">
+                <p class="text-lg font-semibold">Pengelolaan Kelas</p>
+                <div class="flex gap-1 text-white">
+                    <a href="#" class="bg-teal-500 px-2 py-1 rounded hover:bg-teal-700 transition duration-300">
+                        <i class="fa-solid fa-file-circle-plus"></i>
+                    </a>
+                    <a href="#" class="bg-yellow-400 px-2 py-1 rounded hover:bg-yellow-500 transition duration-300">
+                        <i class="fa-solid fa-pen-to-square m-auto "></i>
+                    </a>
+                    <a href="#" class="bg-red-600 px-2 py-1 rounded hover:bg-red-700 transition duration-300">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
                 </div>
+            </div>
 
-                <hr class="mt-5 mb-3 border border-gray-300 ">
+            <hr class="mt-5 mb-3 border border-gray-300 ">
             @endcan
             @forelse ($course->chapters as $chapter)
-                @if ($chapter->lessons->count())
-                    <x-chapter title="{{ $chapter->name }}" totalVideo="{{ $chapter->lessons->count() }}">
-                        <div x-show="expanded" x-collapse class="mx-3 mt-4">
-                            @foreach ($chapter->lessons as $lesson)
-                                <x-lesson
-                                    href="{{ route('course.playing', ['course' => $course->slug, 'lesson' => $lesson->id]) }}">
-                                    {{ $lesson->name }}
-                                </x-lesson>
-                            @endforeach
-                        </div>
-                    </x-chapter>
-                @endif
-            @empty
-                <div class="bg-white p-4 mx-4 rounded-lg mb-3 ">
-                    <div class="focus:bg-none">
-                        <figure>
-                            <img src="{{ asset('assets/img/result-not-found.png') }}" alt="result not found"
-                                class="w-full object-cover px-4">
-                            <figcaption class="flex flex-col text-center justify-center py-4">
-                                <h4 class="font-bold text-2xl text-slate-800">Oops! Data Tidak Ditemukan</h4>
-                                <a href="{{ route('kelas.index') }}"
-                                    class="bg-slate-400 px-4 py-2 text-white rounded-full hover:bg-slate-600 text-center mt-3 w-1/2 mx-auto transition duration-300 ease-in-out">Kembali</a>
-                            </figcaption>
-                        </figure>
-
-                    </div>
+            @if ($chapter->lessons->count())
+            <x-chapter title="{{ $chapter->name }}" totalVideo="{{ $chapter->lessons->count() }}">
+                <div x-show="expanded" x-collapse class="mx-3 mt-4">
+                    @foreach ($chapter->lessons as $lesson)
+                    <x-lesson
+                        href="{{ route('course.playing', ['course' => $course->slug, 'lesson' => $lesson->id]) }}">
+                        {{ $lesson->name }}
+                    </x-lesson>
+                    @endforeach
                 </div>
+            </x-chapter>
+            @endif
+            @empty
+            <div class="bg-white p-4 mx-4 rounded-lg mb-3 ">
+                <div class="focus:bg-none">
+                    <figure>
+                        <img src="{{ asset('assets/img/result-not-found.png') }}" alt="result not found"
+                            class="w-full object-cover px-4">
+                        <figcaption class="flex flex-col text-center justify-center py-4">
+                            <h4 class="font-bold text-2xl text-slate-800">Oops! Data Tidak Ditemukan</h4>
+                            <a href="{{ route('kelas.index') }}"
+                                class="bg-slate-400 px-4 py-2 text-white rounded-full hover:bg-slate-600 text-center mt-3 w-1/2 mx-auto transition duration-300 ease-in-out">Kembali</a>
+                        </figcaption>
+                    </figure>
+
+                </div>
+            </div>
 
             @endforelse
         </div>
@@ -73,73 +72,20 @@
 
             <div class="mt-4">
                 <h3 class="text-2xl font-bold ">{{ $data->name }}</h3>
-                <h4>Materi Bagian : {{ $chapter->name }}</h4>
+                <h4>Materi Bagian : {{ $data->chapter->name }}</h4>
             </div>
             <div class="flex justify-between text-center gap-4 mt-4">
                 @isset($prev)
-                    <a href="{{ $prev->id }}"
-                        class="font-semibold bg-slate-200 w-full p-2 rounded-full hover:bg-slate-300 transition duration-300">Prev</a>
+                <a href="{{ $prev->id }}"
+                    class="font-semibold bg-slate-200 w-full p-2 rounded-full hover:bg-slate-300 transition duration-300">Prev</a>
                 @endisset
                 @isset($next)
-                    <a href="{{ $next->id }}"
-                        class="font-semibold bg-teal-800 w-full p-2 rounded-full text-white hover:bg-teal-700 transition duration-300">Next
-                        Video
-                    </a>
+                <a href="{{ $next->id }}"
+                    class="font-semibold bg-teal-800 w-full p-2 rounded-full text-white hover:bg-teal-700 transition duration-300">Next
+                    Video
+                </a>
                 @endisset
             </div>
         </div>
     </div>
 </x-app-layout>
-
-
-
-
-
-
-{{-- <x-app-layout>
-    <x-slot name="header">
-        <div class="flex justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ $courseName->name }}
-            </h2>
-            <div>
-                <a href="{{ route('kelas.show', $courseName->slug) }}"
-                    class="border border-red-600 px-3 py-2 text-red-700 rounded-full hover:bg-red-700 hover:text-white transition duration-300">Kembali</a>
-            </div>
-        </div>
-    </x-slot>
-
-    <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4">
-                <iframe class="w-full aspect-video rounded p-0 lg:p-4"
-                    src="https://www.youtube.com/embed{{ $videoId }}?autoplay=0" title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen></iframe>
-
-                <div class="mt-4">
-                    <h3 class="text-2xl font-bold ">{{ $data->name }}</h3>
-                    <h4>Materi Bagian : {{ $chapter->name }}</h4>
-                </div>
-                <div class="flex justify-between text-center gap-4 mt-4">
-                    @isset($prev)
-                        <a href="{{ $prev->id }}"
-                            class="font-semibold bg-slate-200 w-full p-2 rounded-full hover:bg-slate-300 transition duration-300">Prev</a>
-                    @endisset
-                    @isset($next)
-                        <a href="{{ $next->id }}"
-                            class="font-semibold bg-teal-800 w-full p-2 rounded-full text-white hover:bg-teal-700 transition duration-300">Next
-                            Video
-                        </a>
-                    @endisset
-                </div>
-
-                <div class="list lesson">
-                    @foreach ($chapter->lessons as $lessons)
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout> --}}

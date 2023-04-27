@@ -34,7 +34,7 @@ class UpdateChapter extends Component
 
     public function update()
     {
-        if (!Gate::allows('manage-chapter')) {
+        if (!Gate::allows('chapter_update')) {
             abort(403);
         }
 

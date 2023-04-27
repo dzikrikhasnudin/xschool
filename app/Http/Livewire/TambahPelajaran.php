@@ -22,7 +22,7 @@ class TambahPelajaran extends Component
     public function store()
     {
 
-        if (!Gate::allows('manage-lesson')) {
+        if (!Gate::allows('lesson_create')) {
             abort(403);
         }
 

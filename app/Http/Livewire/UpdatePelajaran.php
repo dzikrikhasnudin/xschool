@@ -36,7 +36,7 @@ class UpdatePelajaran extends Component
 
     public function update()
     {
-        if (!Gate::allows('manage-lesson')) {
+        if (!Gate::allows('lesson_update')) {
             abort(403);
         }
 

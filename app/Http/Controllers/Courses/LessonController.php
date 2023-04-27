@@ -16,13 +16,17 @@ class LessonController extends Controller
 
     public function index()
     {
+        if (!Gate::allows('lesson_show')) {
+            abort(404);
+        }
+
         return view('courses.lessons.index');
     }
 
     public function store(Request $request)
     {
 
-        if (!Gate::allows('manage-course')) {
+        if (!Gate::allows('lesson_create')) {
             abort(403);
         }
 

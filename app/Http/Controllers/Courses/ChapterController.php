@@ -17,7 +17,7 @@ class ChapterController extends Controller
      */
     public function index()
     {
-        if (!Gate::allows('manage-chapter')) {
+        if (!Gate::allows('chapter_show')) {
             abort(404);
         }
 
@@ -26,7 +26,7 @@ class ChapterController extends Controller
 
     public function store(Request $request)
     {
-        if (!Gate::allows('manage-chapter')) {
+        if (!Gate::allows('chapter_create')) {
             abort(403);
         }
 

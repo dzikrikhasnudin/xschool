@@ -21,7 +21,7 @@ class TambahChapter extends Component
 
     public function store()
     {
-        if (!Gate::allows('manage-chapter')) {
+        if (!Gate::allows('chapter_update')) {
             abort(403);
         }
 
