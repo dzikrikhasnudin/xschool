@@ -36,7 +36,7 @@
                             <div class="font-mono uppercase text-sm leading-none">Detik</div>
                         </div>
                     </div>
-                    <h2 class="text-3xl text-center mt-3 font-semibold">Menuju UTBK-SNBT 2023</h2>
+                    <h2 class="text-xl lg:text-3xl text-center mt-3 font-semibold">Menuju UTBK-SNBT 2023</h2>
                 </div>
 
             </div>

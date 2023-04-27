@@ -4,6 +4,7 @@ use App\Http\Controllers\Courses\ChapterController;
 use App\Http\Controllers\Courses\CourseController;
 use App\Http\Controllers\Courses\LessonController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Livewire\IndexPelajaran;
 use App\Http\Livewire\UserIndex;
 use Illuminate\Support\Facades\Route;
@@ -19,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('homepage');
 
 Route::middleware([
     'auth:sanctum',
