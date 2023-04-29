@@ -39,6 +39,15 @@ class UserIndex extends Component
         $this->userId = $user->id;
     }
 
+    public function destroy($id)
+    {
+        if ($id) {
+            $data = User::find($id);
+            $data->delete();
+            $this->updateUserRole = false;
+        }
+    }
+
     public function updateRole()
     {
         $user = User::find($this->userId);

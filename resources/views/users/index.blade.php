@@ -140,3 +140,36 @@
     </div>
 
 </div>
+
+@push('script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        @this.on('triggerDelete', userId => {
+            Swal.fire({
+                title: 'Yakin hapus data?',
+                text: 'Data pengguna akan dihapus permanen!',
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#E12425',
+                cancelButtonColor: '#aaa',
+                confirmButtonText: 'Hapus saja!',
+                cancelButtonText: 'Batalkan'
+            }).then((result) => {
+         //if user clicks on delete
+                if (result.value) {
+             // calling destroy method to delete
+                    @this.call('destroy', userId)
+             // success response
+                    Swal.fire({title: 'Data pengguna berhasil dihapus!', icon: 'success'});
+                } else {
+                    Swal.fire({
+                        title: 'Hapus data dibatalkan!',
+                        icon: 'success'
+                    });
+                }
+            });
+        });
+    })
+</script>
+@endpush
