@@ -1,4 +1,5 @@
 <x-app-layout>
+    <x-slot name="title">Dashboard</x-slot>
     <x-slot name="header">
         <h2 class="font-semibold my-auto text-lg md:text-xl text-gray-800 leading-tight mb-3">
             {{ __('Dashboard') }}
@@ -9,7 +10,8 @@
         <div class="max-w-7xl mx-4 sm:px-6 lg:px-8 py-3">
             <div class="bg-white lg:flex  justify-around overflow-hidden shadow-xl rounded-lg px-4 ">
                 <div class="p-4 my-auto text-center lg:text-left">
-                    <h2 class="font-bold text-xl mb-2">Hallo, <span class="text-teal-500">{{ Auth::user()->name
+                    <h2 class="font-bold text-xl mb-2">Hallo, <span class="text-teal-500">{{
+                            ucwords(strtolower(Auth::user()->name))
                             }}.</span>
                     </h2>
                     <p class="lg:text-4xl text-3xl font-bold">

@@ -17,6 +17,14 @@ class UserIndex extends Component
     public $name;
     public $role_id;
     public $userId;
+    public $search;
+
+    protected $queryString = ['search'];
+
+    public function mount()
+    {
+        $this->search = request()->query('search', $this->search);
+    }
 
     public function render()
     {
@@ -25,8 +33,10 @@ class UserIndex extends Component
         }
 
         return view('users.index', [
-            'users' => User::with('roles')->latest()->paginate($this->paginate),
-            'roles' => Role::all()
+            'roles' => Role::all(),
+            'users' => $this->search === null ?
+                User::with('roles')->latest()->paginate($this->paginate) :
+                User::where('name', 'like', '%' . $this->search . '%')->with('roles')->paginate($this->paginate)
         ])
             ->layout('layouts.app');
     }
