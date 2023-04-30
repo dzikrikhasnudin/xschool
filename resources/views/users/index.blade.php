@@ -102,6 +102,9 @@
                                 <th scope="col" class="p-2 text-center">
                                     No
                                 </th>
+                                <th scope="col" class="p-2 text-center">
+                                    Foto Profil
+                                </th>
                                 <th scope="col" class="px-6 py-3">
                                     Nama Lengkap
                                 </th>
@@ -127,6 +130,14 @@
                             <tr class="bg-white border-b 0">
                                 <td scope="col" class="p-2 text-center">
                                     {{ $index++ }}
+                                </td>
+                                <td scope="col" class="p-2 text-center">
+                                    @if ($user->photo_profile_path != null)
+                                    <img class="w-8 h-8 rounded-full object-cover mx-auto"
+                                        src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="Neil image">
+                                    @else
+                                    -
+                                    @endif
                                 </td>
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
