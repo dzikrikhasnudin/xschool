@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <x-slot name="title">Register</x-slot>
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />
@@ -17,7 +18,7 @@
 
             <div class="mt-4">
                 <x-label for="username" value="{{ __('Username') }}" />
-                <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')"
+                <x-input id="username" class="block mt-1 w-full lowercase" type="text" name="username" :value="old('username')"
                     required autofocus autocomplete="name" />
             </div>
 

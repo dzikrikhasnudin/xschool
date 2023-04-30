@@ -13,7 +13,7 @@
                         id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                         data-dropdown-placement="bottom">
                         <span class="sr-only">Open user menu</span>
-                        <img class="w-8 h-8 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="user photo">
+                        <img class="w-8 h-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="user photo">
                     </button>
                     <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                         id="user-dropdown">
@@ -233,10 +233,10 @@
                         <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">About</h2>
                         <ul class="text-gray-600 dark:text-gray-400 font-medium">
                             <li class="mb-4">
-                                <a href="https://flowbite.com/" class="hover:underline">Program</a>
+                                <a href="#" class="hover:underline">Program</a>
                             </li>
                             <li>
-                                <a href="https://tailwindcss.com/" class="hover:underline">Hubungi Kami</a>
+                                <a href="#" class="hover:underline">Hubungi Kami</a>
                             </li>
                         </ul>
                     </div>

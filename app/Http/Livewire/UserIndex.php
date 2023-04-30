@@ -17,6 +17,14 @@ class UserIndex extends Component
     public $name;
     public $role_id;
     public $userId;
+    public $search;
+
+    protected $queryString = ['search'];
+
+    public function mount()
+    {
+        $this->search = request()->query('search', $this->search);
+    }
 
     public function render()
     {
@@ -25,8 +33,10 @@ class UserIndex extends Component
         }
 
         return view('users.index', [
-            'users' => User::with('roles')->latest()->paginate($this->paginate),
-            'roles' => Role::all()
+            'roles' => Role::all(),
+            'users' => $this->search === null ?
+                User::with('roles')->latest()->paginate($this->paginate) :
+                User::where('name', 'like', '%' . $this->search . '%')->with('roles')->paginate($this->paginate)
         ])
             ->layout('layouts.app');
     }
@@ -38,9 +48,25 @@ class UserIndex extends Component
         $this->role_id = $user->roles->pluck('id')->first();
         $this->userId = $user->id;
     }
+    
+        public function destroy($id)
+    {
+        if (!Gate::allows('user_delete')) {
+            abort(403);
+        }
+        if ($id) {
+            $data = User::find($id);
+            $data->delete();
+            $this->updateUserRole = false;
+        }
+    }
 
     public function updateRole()
     {
+        if (!Gate::allows('user_update')) {
+            abort(403);
+        }
+        
         $user = User::find($this->userId);
 
         $user->syncRoles($this->role_id);
