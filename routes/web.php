@@ -8,7 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Livewire\IndexPelajaran;
 use App\Http\Livewire\UserIndex;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Livewire\IndexModul;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,4 +34,5 @@ Route::middleware([
     Route::resource('bab', ChapterController::class)->except(['update', 'destroy', 'edit', 'show']);
     Route::resource('pelajaran', LessonController::class)->except(['update', 'destroy', 'edit', 'show']);
     Route::get('user', UserIndex::class)->name('user.index');
+    Route::get('modul', IndexModul::class)->name('modul.index');
 });

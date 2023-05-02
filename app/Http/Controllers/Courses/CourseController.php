@@ -72,17 +72,10 @@ class CourseController extends Controller
 
     public function show(string $slug)
     {
-        $course = Course::where('slug', $slug)->with('chapters')->first();
-
-        if (!$course->chapters->count() or !$course->chapters[0]->lessons->count()) {
-            $firstLesson = false;
-        } else {
-            $firstLesson = $course->chapters[0]->lessons[0];
-        }
+        $course = Course::where('slug', $slug)->first();
 
         return view('courses.detail', [
-            'course' => $course,
-            'firstLesson' => $firstLesson
+            'course' => $course
         ]);
     }
 
