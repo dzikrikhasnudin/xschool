@@ -3,6 +3,7 @@
 use App\Http\Controllers\Courses\ChapterController;
 use App\Http\Controllers\Courses\CourseController;
 use App\Http\Controllers\Courses\LessonController;
+use App\Http\Controllers\Courses\QuizController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Livewire\IndexPelajaran;
@@ -35,4 +36,5 @@ Route::middleware([
     Route::resource('pelajaran', LessonController::class)->except(['update', 'destroy', 'edit', 'show']);
     Route::get('user', UserIndex::class)->name('user.index');
     Route::get('modul', IndexModul::class)->name('modul.index');
+    Route::resource('kuis', QuizController::class);
 });
