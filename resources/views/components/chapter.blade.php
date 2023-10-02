@@ -2,8 +2,13 @@
     <div @click="expanded = ! expanded" class="chapters flex justify-between cursor-pointer focus:bg-none">
         <div class="chapter-title">
             <h3 class="font-bold text-lg">{{ $title }}</h3>
-            <p class="text-sm">{{ $totalVideo }} Video</p>
-        </div>
+             <div class="flex gap-3">
+                <p class="text-sm"><strong>{{ $totalVideo }}</strong> Video</p>
+		@isset($totalModul)
+	        <p class="text-sm"><strong>{{ $totalModul }}</strong> Modul</p>
+		@endisset
+            </div>        
+	</div>
         <div class="my-auto">
             <button class="rounded-full p-1">
                 <i :class="{
