@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,11 +15,14 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
-            UserSeeder::class,
+            // UserSeeder::class,
             // CourseSeeder::class,
             // ChapterSeeder::class,
             // LessonSeeder::class,
-            PermissionTableSeeder::class
+            // PermissionTableSeeder::class,
+            PelajaranSeeder::class
         ]);
+
+        \App\Models\NilaiRapor::factory(16)->create();
     }
 }

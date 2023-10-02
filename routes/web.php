@@ -5,10 +5,12 @@ use App\Http\Controllers\Courses\CourseController;
 use App\Http\Controllers\Courses\LessonController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NilaiRaporController;
 use App\Http\Livewire\IndexPelajaran;
 use App\Http\Livewire\UserIndex;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\IndexModul;
+use App\Http\Livewire\IndexNilaiRapor;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +42,6 @@ Route::middleware([
     Route::resource('pelajaran', LessonController::class)->except(['update', 'destroy', 'edit', 'show']);
     Route::get('user', UserIndex::class)->name('user.index');
     Route::get('modul', IndexModul::class)->name('modul.index');
+    // Route::get('nilai-rapor', IndexNilaiRapor::class)->name('modul.index');
+    Route::get('nilai-rapor', [NilaiRaporController::class, 'index'])->name('nilai-rapor');
 });
