@@ -18,7 +18,7 @@ class CourseController extends Controller
 {
     public function index()
     {
-         if (Auth::user()->hasRole('Student')) {
+        if (Auth::user()->hasRole('Student')) {
             $courses = Course::published()->get();
         } else {
             $courses = Course::all();
@@ -73,10 +73,13 @@ class CourseController extends Controller
     public function show(string $slug)
     {
         $course = Course::where('slug', $slug)->first();
+        $course = Course::where('slug', $slug)->first();
 
         return view('courses.detail', [
-            'course' => $course
-        ]);    }
+            'course' => $course,
+            'firstLesson' => $firstLesson
+        ]);
+    }
 
     public function play($course, $lesson)
     {
@@ -88,7 +91,7 @@ class CourseController extends Controller
 
         $next = $chapter->lessons->where('id', '>', $data->id)->first();
         $prev = $chapter->lessons->where('id', '<', $data->id)->sortByDesc('id')->first();
-        
+
         // dd($videoId);
 
 

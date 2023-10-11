@@ -25,6 +25,14 @@ class UserIndex extends Component
     {
         $this->search = request()->query('search', $this->search);
     }
+    public $search;
+
+    protected $queryString = ['search'];
+
+    public function mount()
+    {
+        $this->search = request()->query('search', $this->search);
+    }
 
     public function render()
     {

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Courses\ChapterController;
 use App\Http\Controllers\Courses\CourseController;
 use App\Http\Controllers\Courses\LessonController;
+use App\Http\Controllers\Courses\QuizController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NilaiRaporController;
