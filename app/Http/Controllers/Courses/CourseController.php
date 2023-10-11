@@ -76,7 +76,9 @@ class CourseController extends Controller
 
         return view('courses.detail', [
             'course' => $course
-        ]);    }
+        ]);    
+        
+    }
 
     public function play($course, $lesson)
     {
@@ -89,6 +91,8 @@ class CourseController extends Controller
         $next = $chapter->lessons->where('id', '>', $data->id)->first();
         $prev = $chapter->lessons->where('id', '<', $data->id)->sortByDesc('id')->first();
         
+        // dd($videoId);
+
         // dd($videoId);
 
 
@@ -151,9 +155,10 @@ class CourseController extends Controller
     {
         $course = Course::findOrFail($id);
 
-        if (!Gate::allows('manage-course')) {
+        if (!Gate::allows('course_delete')) {
             abort(403);
         }
+        
         if (Storage::exists('public/' . $course->thumbnail)) {
             Storage::delete('public/' . $course->thumbnail);
         }

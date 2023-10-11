@@ -6,9 +6,11 @@ import focus from '@alpinejs/focus';
 import collapse from '@alpinejs/collapse'
 import intersect from '@alpinejs/intersect'
 import Swal from 'sweetalert2';
+import Chart from 'chart.js/auto'
 
 
 window.Alpine = Alpine;
+window.Chart = Chart;
 
 Alpine.plugin(focus);
 Alpine.plugin(collapse);

@@ -25,6 +25,16 @@ class UserSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
+            [
+                'name' => 'Fitra Ilyasa',
+                'username' => 'fitrailyasa',
+                'email' => 'fitrailyasa12@gmail.com',
+                'email_verified_at' => now(),
+                'password' => Hash::make('ndefitra'),
+                'remember_token' => 'CKtNykWjOcGobSN2FODM4xeLhRjTDC6ABAN0Wgg95XKzrhDLpeITYlaWMsKh',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
         ];
 
         User::insert($data);

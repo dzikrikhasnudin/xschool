@@ -48,8 +48,8 @@ class UserIndex extends Component
         $this->role_id = $user->roles->pluck('id')->first();
         $this->userId = $user->id;
     }
-    
-        public function destroy($id)
+
+    public function destroy($id)
     {
         if (!Gate::allows('user_delete')) {
             abort(403);
@@ -66,7 +66,7 @@ class UserIndex extends Component
         if (!Gate::allows('user_update')) {
             abort(403);
         }
-        
+
         $user = User::find($this->userId);
 
         $user->syncRoles($this->role_id);

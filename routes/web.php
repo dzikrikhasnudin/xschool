@@ -3,12 +3,15 @@
 use App\Http\Controllers\Courses\ChapterController;
 use App\Http\Controllers\Courses\CourseController;
 use App\Http\Controllers\Courses\LessonController;
+use App\Http\Controllers\Courses\QuizController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NilaiRaporController;
 use App\Http\Livewire\IndexPelajaran;
 use App\Http\Livewire\UserIndex;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\IndexModul;
+use App\Http\Livewire\IndexNilaiRapor;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +43,9 @@ Route::middleware([
     Route::resource('pelajaran', LessonController::class)->except(['update', 'destroy', 'edit', 'show']);
     Route::get('user', UserIndex::class)->name('user.index');
     Route::get('modul', IndexModul::class)->name('modul.index');
+    Route::resource('nilai-rapor', NilaiRaporController::class)->except('edit', 'destroy', 'update');
+    Route::get('nilai-rapor/semester-{semester}/edit', [NilaiRaporController::class, 'edit'])->name('nilai-rapor.edit');
+    Route::delete('nilai-rapor/{user}/semester-{semester}', [NilaiRaporController::class, 'destroy'])->name('nilai-rapor.destroy');
+    route::put('nilai-rapor/semester-{semester}', [NilaiRaporController::class, 'update'])->name('nilai-rapor.update');
+
 });

@@ -26,7 +26,7 @@ class Chapter extends Model
     {
         return $this->belongsTo(Course::class);
     }
-	
+
     public function moduls()
     {
         return $this->hasMany(Modul::class)->orderBy('id', 'ASC');

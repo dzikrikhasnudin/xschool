@@ -8,6 +8,7 @@
 
     <div class="py-6 ">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-3">
+
             <div class="bg-white lg:flex  justify-around overflow-hidden shadow-xl rounded-lg px-4 ">
                 <div class="p-4 my-auto text-center lg:text-left">
                     <h2 class="font-bold text-xl mb-2">Hallo, <span class="text-teal-500">{{
@@ -41,6 +42,16 @@
                     <h2 class="text-xl lg:text-3xl text-center mt-3 font-semibold">Menuju UTBK-SNBT 2024</h2>
                 </div>
 
+            </div>
+
+            <div class="bg-white overflow-hidden shadow-xl rounded-lg px-4 my-4">
+                <h2 class="p-4 font-bold text-xl ">Nilai rata-rata rapor kamu adalah <span class="text-teal-500">{{
+                        number_format(getAverage(Auth::user()->id),
+                        2) }}</span>
+                </h2>
+                <div class="mt-4 p-4">
+                    <canvas id="raporChart"></canvas>
+                </div>
             </div>
 
             {{-- Materi UTBK-SNBT 2023 --}}
@@ -155,49 +166,9 @@
 
         @push('script')
         <script src="{{ asset('assets/js/countdown.min.js') }}"></script>
-        <script>
-            (function () {
-        const second = 1000,
-        minute = second * 60,
-        hour = minute * 60,
-        day = hour * 24;
 
-    let today = new Date(),
-        dd = String(today.getDate()).padStart(2, "0"),
-        mm = String(today.getMonth() + 1).padStart(2, "0"),
-        yyyy = today.getFullYear(),
-        nextYear = yyyy + 1,
-        dayMonth = "05/14/",
-        utbk = dayMonth + yyyy;
+        @include('partials.rapor-chart')
+        @include('partials.countdown')
 
-        today = mm + "/" + dd + "/" + yyyy;
-
-        if (today > utbk) {
-            utbk = dayMonth + nextYear;
-        }
-    //end
-
-    const countDown = new Date(utbk).getTime(),
-      x = setInterval(function() {
-
-        const now = new Date().getTime(),
-            distance = countDown - now;
-
-        document.getElementById("days").innerText = Math.floor(distance / (day)),
-          document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
-          document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
-          document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
-
-        //do something later when date is reached
-        if (distance < 0) {
-          document.getElementById("headline").innerText = "It's my utbk!";
-          document.getElementById("countdown").style.display = "none";
-          document.getElementById("content").style.display = "block";
-          clearInterval(x);
-        }
-        //seconds
-      }, 0)
-  }());
-        </script>
         @endpush
 </x-app-layout>

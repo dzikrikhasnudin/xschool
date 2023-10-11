@@ -18,14 +18,14 @@
 
     <!-- Scripts -->
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
-    
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EJMV8ZB8Z9"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
+        window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    
+
       gtag('config', 'G-EJMV8ZB8Z9');
     </script>
 
@@ -33,6 +33,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Styles -->
     @livewireStyles
+    @stack('style')
 </head>
 
 <body class="font-sans antialiased">
