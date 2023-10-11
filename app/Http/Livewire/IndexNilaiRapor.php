@@ -46,9 +46,6 @@ class IndexNilaiRapor extends Component
 
     public function destroy($semester)
     {
-        if (!Gate::allows('user_delete')) {
-            abort(403);
-        }
 
         $user = Auth::user();
         $nilai = NilaiRapor::where('user_id', $user->id)->where('semester', $semester)->get();
