@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="title">{{  $data->name }}</x-slot>
+    <x-slot name="title">{{ $data->name }}</x-slot>
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold my-auto text-lg md:text-xl text-gray-800 leading-tight text-center mb-3">
@@ -35,7 +35,8 @@
             @endcan
             @forelse ($course->chapters as $chapter)
             @if ($chapter->lessons->count())
-            <x-chapter title="{{ $chapter->name }}" totalVideo="{{ $chapter->lessons->count() }}">
+            <x-chapter title="{{ $chapter->name }}" totalVideo="{{ $chapter->lessons->count() }}"
+                totalModul="{{ $chapter->moduls->count() }}">
                 <div x-show="expanded" x-collapse class="mx-3 mt-4">
                     @foreach ($chapter->lessons as $lesson)
                     <x-lesson
@@ -43,6 +44,20 @@
                         {{ $lesson->name }}
                     </x-lesson>
                     @endforeach
+
+                    @if ($chapter->moduls->count())
+                    @foreach ($chapter->moduls as $modul)
+                    <a href="{{ $modul->file }}" target="_blank"
+                        class="rounded-full bg-slate-200 px-5 py-1 flex mb-3 hover:bg-slate-700 hover:text-white transition duration-300">
+                        <div class="p-2 my-auto mr-2 ">
+                            <i class="fa-sharp fa-solid fa-download"></i>
+                        </div>
+                        <div class="text-left my-auto font-semibold cursor-pointer">
+                            <h4>{{ $modul->name }}</h4>
+                        </div>
+                    </a>
+                    @endforeach
+                    @endif
                 </div>
             </x-chapter>
             @endif

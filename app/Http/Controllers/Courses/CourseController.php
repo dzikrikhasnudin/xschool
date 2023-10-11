@@ -18,8 +18,8 @@ class CourseController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->hasRole('Student')) {
-            $courses = Course::published()->latest()->get();
+         if (Auth::user()->hasRole('Student')) {
+            $courses = Course::published()->get();
         } else {
             $courses = Course::all();
         }
@@ -72,19 +72,11 @@ class CourseController extends Controller
 
     public function show(string $slug)
     {
-        $course = Course::where('slug', $slug)->with('chapters')->first();
-
-        if (!$course->chapters->count() or !$course->chapters[0]->lessons->count()) {
-            $firstLesson = false;
-        } else {
-            $firstLesson = $course->chapters[0]->lessons[0];
-        }
+        $course = Course::where('slug', $slug)->first();
 
         return view('courses.detail', [
-            'course' => $course,
-            'firstLesson' => $firstLesson
-        ]);
-    }
+            'course' => $course
+        ]);    }
 
     public function play($course, $lesson)
     {
@@ -96,6 +88,8 @@ class CourseController extends Controller
 
         $next = $chapter->lessons->where('id', '>', $data->id)->first();
         $prev = $chapter->lessons->where('id', '<', $data->id)->sortByDesc('id')->first();
+        
+        // dd($videoId);
 
 
         return view('courses.playing', [

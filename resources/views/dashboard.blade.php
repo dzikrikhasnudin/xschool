@@ -6,11 +6,12 @@
         </h2>
     </x-slot>
 
-    <div class="py-6">
-        <div class="max-w-7xl mx-4 sm:px-6 lg:px-8 py-3">
+    <div class="py-6 ">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-3">
             <div class="bg-white lg:flex  justify-around overflow-hidden shadow-xl rounded-lg px-4 ">
                 <div class="p-4 my-auto text-center lg:text-left">
-                    <h2 class="font-bold text-xl mb-2">Hallo, <span class="text-teal-500 capitalize">{{ ucwords(strtolower(Auth::user()->name))
+                    <h2 class="font-bold text-xl mb-2">Hallo, <span class="text-teal-500">{{
+                            ucwords(strtolower(Auth::user()->name))
                             }}.</span>
                     </h2>
                     <p class="lg:text-4xl text-3xl font-bold">
@@ -19,25 +20,25 @@
                 </div>
                 <div class="text-gray-800 p-4">
                     <img src="{{ asset('assets/img/countdown.png') }}" alt="" class="mx-auto lg:w-1/2">
-                    <div class="text-6xl text-center flex w-full items-center justify-center">
-                        <div class="w-24 mx-1 p-2 bg-white text-teal-800 rounded-lg border">
+                    <div class="text-6xl lg:text-6xl text-center flex w-full items-center justify-center">
+                        <div class="w-32 mx-1 p-2 bg-white text-teal-800 rounded-lg border">
                             <div class="font-mono leading-none" x-text="days" id="days"></div>
                             <div class="font-mono uppercase text-sm leading-none ">Hari</div>
                         </div>
-                        <div class="w-24 mx-1 p-2 bg-white text-teal-800 rounded-lg border">
+                        <div class="w-32 mx-1 p-2 bg-white text-teal-800 rounded-lg border">
                             <div class="font-mono leading-none" x-text="hours" id="hours"></div>
                             <div class="font-mono uppercase text-sm leading-none">Jam</div>
                         </div>
-                        <div class="w-24 mx-1 p-2 bg-white text-teal-800 rounded-lg border">
+                        <div class="w-32 mx-1 p-2 bg-white text-teal-800 rounded-lg border">
                             <div class="font-mono leading-none" x-text="minutes" id="minutes"></div>
                             <div class="font-mono uppercase text-sm leading-none">Menit</div>
                         </div>
-                        <div class="w-24 mx-1 p-2 bg-white text-teal-800 rounded-lg border">
+                        <div class="w-32 mx-1 p-2 bg-white text-teal-800 rounded-lg border">
                             <div class="font-mono leading-none" x-text="seconds" id="seconds"></div>
                             <div class="font-mono uppercase text-sm leading-none">Detik</div>
                         </div>
                     </div>
-                    <h2 class="text-xl lg:text-3xl text-center mt-3 font-semibold">Menuju UTBK-SNBT 2023</h2>
+                    <h2 class="text-xl lg:text-3xl text-center mt-3 font-semibold">Menuju UTBK-SNBT 2024</h2>
                 </div>
 
             </div>

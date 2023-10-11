@@ -28,7 +28,12 @@
                         {{ __('Pelajaran') }}
                     </x-nav-link>
                     @endcan
-                    @can('user_show')
+		    @can('chapter_show')
+                    <x-nav-link href="{{ route('modul.index') }}" :active="request()->routeIs('modul.index')">
+                        {{ __('Modul') }}
+                    </x-nav-link>
+                    @endcan                    
+		    @can('user_show')
                     <x-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index')">
                         {{ __('Kelola Pengguna') }}
                     </x-nav-link>
@@ -128,6 +133,11 @@
             <x-responsive-nav-link href="{{ route('pelajaran.index') }}"
                 :active="request()->routeIs('pelajaran.index')">
                 {{ __('Pelajaran') }}
+            </x-responsive-nav-link>
+            @endcan
+	    @can('chapter_show')
+            <x-responsive-nav-link href="{{ route('modul.index') }}" :active="request()->routeIs('modul.index')">
+                {{ __('Modul') }}
             </x-responsive-nav-link>
             @endcan
             @can('user_show')
