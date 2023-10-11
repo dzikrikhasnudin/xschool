@@ -61,7 +61,7 @@
                     <th scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <a class="hover:text-teal-400 transition duration-200 hover:underline hover:font-semibold"
                             href="{{ route('nilai-rapor.show', getStudent($siswa)->username) }}">{{
-                            getStudent($siswa)->name
+                            ucwords(strtolower(getStudent($siswa)->name))
                             }}</a>
                     </th>
                     <td class="px-6 py-3 text-center">
