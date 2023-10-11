@@ -42,6 +42,8 @@ Route::middleware([
     Route::resource('pelajaran', LessonController::class)->except(['update', 'destroy', 'edit', 'show']);
     Route::get('user', UserIndex::class)->name('user.index');
     Route::get('modul', IndexModul::class)->name('modul.index');
-    // Route::get('nilai-rapor', IndexNilaiRapor::class)->name('modul.index');
-    Route::get('nilai-rapor', [NilaiRaporController::class, 'index'])->name('nilai-rapor');
+    Route::resource('nilai-rapor', NilaiRaporController::class)->except('edit', 'destroy', 'update');
+    Route::get('nilai-rapor/semester-{semester}/edit', [NilaiRaporController::class, 'edit'])->name('nilai-rapor.edit');
+    Route::delete('nilai-rapor/{user}/semester-{semester}', [NilaiRaporController::class, 'destroy'])->name('nilai-rapor.destroy');
+    route::put('nilai-rapor/semester-{semester}', [NilaiRaporController::class, 'update'])->name('nilai-rapor.update');
 });

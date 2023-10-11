@@ -16,87 +16,92 @@ class PelajaranSeeder extends Seeder
     {
         $data = [
             [
-                'pelajaran' => 'Agama',
+                'nama' => 'Agama',
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
-                'pelajaran' => 'PKN',
+                'nama' => 'PKN',
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
-                'pelajaran' => 'Bahasa Indonesia',
+                'nama' => 'Bahasa Indonesia',
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
-                'pelajaran' => 'Bahasa Inggris',
+                'nama' => 'Bahasa Inggris',
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
-                'pelajaran' => 'Matematika',
+                'nama' => 'Matematika',
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
-                'pelajaran' => 'Sejarah Wajib',
+                'nama' => 'Sejarah Wajib',
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
-                'pelajaran' => 'Seni Budaya',
+                'nama' => 'Seni Budaya',
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
-                'pelajaran' => 'Olahraga',
+                'nama' => 'Olahraga',
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
-                'pelajaran' => 'Kewirausahaan',
+                'nama' => 'Kewirausahaan',
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
-                'pelajaran' => 'Fisika',
+                'nama' => 'Fisika',
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
-                'pelajaran' => 'Kimia',
+                'nama' => 'Kimia',
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
-                'pelajaran' => 'Biologi',
+                'nama' => 'Biologi',
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
-                'pelajaran' => 'Ekonomi',
+                'nama' => 'Matematika IPA',
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
-                'pelajaran' => 'Bahasa Asing',
+                'nama' => 'Ekonomi',
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
-                'pelajaran' => 'Sejarah',
+                'nama' => 'Sejarah',
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
-                'pelajaran' => 'Geografi',
+                'nama' => 'Geografi',
                 "created_at" => now(),
                 "updated_at" => now()
             ],
             [
-                'pelajaran' => 'Sosiologi',
+                'nama' => 'Sosiologi',
+                "created_at" => now(),
+                "updated_at" => now()
+            ],
+            [
+                'nama' => 'Bahasa Asing',
                 "created_at" => now(),
                 "updated_at" => now()
             ],

@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             // ChapterSeeder::class,
             // LessonSeeder::class,
             // PermissionTableSeeder::class,
-            PelajaranSeeder::class
+            PelajaranSeeder::class,
+            NilaiSeeder::class
         ]);
 
         \App\Models\NilaiRapor::factory(16)->create();

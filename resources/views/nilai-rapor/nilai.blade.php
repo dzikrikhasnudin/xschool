@@ -16,7 +16,7 @@
     @endif
 
 
-    <div class="flex gap-2">
+    <div class="flex gap-2 items-center justify-between">
         {{-- Pagination Settings --}}
         <select wire:model="semester"
             class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ">
@@ -27,29 +27,50 @@
             <option value="5">Semester 5</option>
             <option value="6">Semester 6</option>
         </select>
-        {{-- Search Box --}}
-        <div class="flex">
-            <div class="relative w-full">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </div>
-                <input wire:model="search" type="text"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  "
-                    placeholder="Search">
-            </div>
+
+        @if (Auth::user()->getRoleNames()->first() == "Student")
+        <!-- Dropdown menu -->
+        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+            class="text-white bg-teal-500 hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-teal-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            type="button">Aksi<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m1 1 4 4 4-4" />
+            </svg>
+        </button>
+
+        <div id="dropdown"
+            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-48 dark:bg-gray-700">
+            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                <li>
+                    <a href="{{ route('nilai-rapor.create') }}"
+                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                        <i class="fa-solid fa-file-circle-plus mr-2 "></i>Tambah
+                        Nilai</a>
+                </li>
+                <li>
+                    <a href="{{ route('nilai-rapor.edit', $semester) }}"
+                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                        <i class="fa-solid fa-pen-to-square mr-2 "></i>Edit - Semester {{ $semester }}</a>
+                </li>
+                <li>
+                    <a wire:click="$emit('triggerDelete', {{ $semester }})"
+                        class="block cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                        <i class="fa-solid fa-trash mr-2"></i> Hapus - Semester {{ $semester }}</a>
+                </li>
+
+            </ul>
         </div>
+        @endif
+
+
     </div>
 
     <hr class="my-4">
 
     <div class=" overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 ">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 w-full">
                 <tr>
                     <th scope="col" class="p-2 text-center">
                         No
@@ -63,42 +84,99 @@
                     <th scope="col" class="px-6 py-3">
                         Semester
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        Action
-                    </th>
+
                 </tr>
             </thead>
             <tbody>
-                @foreach ($nilai as $index => $data)
+                @forelse ($nilai as $index => $data)
+                @if ($data->nilai >= 0)
                 <tr class="bg-white border-b 0">
+
                     <td scope="col" class="p-2 text-center">
                         {{ $index + 1 }}
                     </td>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $data->pelajaran->pelajaran }}
+                    <th scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{ $data->pelajaran->nama }}
                     </th>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-3">
                         {{ $data->nilai }}
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-3">
                         {{ $data->semester }}
                     </td>
-                    <td class="px-6 py-4 flex gap-2 text-white">
-                        {{-- Edit --}}
-                        <button class="bg-yellow-400 px-2 py-1 rounded hover:bg-yellow-500 transition duration-300">
-                            <i class="fa-solid fa-pen-to-square m-auto "></i>
-                        </button>
-                        <button class="bg-red-600 px-2 py-1 rounded hover:bg-red-700 transition duration-300">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </td>
+
                 </tr>
-                @endforeach
+                @endif
+                @empty
+                @if (Auth::user()->id == $siswa->id)
+                <tr>
+                    <th scope="col" colspan="5" class="col-span-2 p-2 text-lg text-center pt-4">
+                        Anda belum melakukan input Nilai Rapor Semester {{ $semester }}
+                    </th>
+
+                </tr>
+                <tr>
+                    <th scope="col" colspan="5" class="col-span-2 p-2 text-center pb-4">
+                        <a href="{{ route('nilai-rapor.create') }}"
+                            class="text-white bg-teal-500 hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-teal-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tambah
+                            Nilai
+                        </a>
+                    </th>
+
+                </tr>
+                @else
+                <tr>
+                    <th scope="col" colspan="5" class="col-span-2 text-lg text-center py-4">
+                        {{ $siswa->name . ' belum melakukan input Nilai Rapor Semester ' . $semester }}
+                    </th>
+
+                </tr>
+                @endif
+                @endforelse
+                <tr class="bg-gray-50">
+                    <th scope="col" colspan="2" class="col-span-2 p-2 text-center">
+                        Rata-rata
+                    </th>
+                    <th scope="col" colspan="3" class="px-6 py-3">
+                        {{ getAverage($siswa->id, $semester) }}
+                    </th>
+
+                </tr>
             </tbody>
         </table>
     </div>
 
-    {{-- <div class="py-3">
-        {{ $users->links() }}
-    </div> --}}
 </div>
+
+@push('script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        @this.on('triggerDelete', semester => {
+            Swal.fire({
+                title: 'Yakin hapus data?',
+                text: 'Data nilai ini akan dihapus permanen!',
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#E12425',
+                cancelButtonColor: '#aaa',
+                confirmButtonText: 'Hapus saja!',
+                cancelButtonText: 'Batalkan'
+            }).then((result) => {
+            //if user clicks on delete
+                if (result.value) {
+            // calling destroy method to delete
+                    @this.call('destroy', semester)
+            // success response
+                    Swal.fire({title: 'Data nilai berhasil dihapus!', icon: 'success'});
+                } else {
+                    Swal.fire({
+                        title: 'Hapus data nilai dibatalkan!',
+                        icon: 'success'
+                    });
+                }
+            });
+        });
+    })
+</script>
+@endpush

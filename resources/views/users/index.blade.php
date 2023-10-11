@@ -1,5 +1,5 @@
 <div>
-        <x-slot name="title">Kelola Pengguna</x-slot>
+    <x-slot name="title">Kelola Pengguna</x-slot>
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold my-auto text-lg md:text-xl text-gray-800 leading-tight text-center mb-3">
@@ -65,8 +65,8 @@
                 </form>
 
                 <hr class="my-4">
-                
-                                <div class="flex gap-2">
+
+                <div class="flex gap-2">
                     {{-- Pagination Settings --}}
                     <select wire:model="paginate"
                         class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ">
@@ -109,9 +109,10 @@
                                 <th scope="col" class="px-6 py-3">
                                     Nama Lengkap
                                 </th>
-                                <th scope="col" class="px-6 py-3 hidden lg:block capitalize">
+                                <th scope="col" class="px-6 py-3 hidden lg:block">
                                     Nama Pengguna
                                 </th>
+
                                 <th scope="col" class="px-6 py-3">
                                     Email
                                 </th>
@@ -147,6 +148,7 @@
                                 <td class="px-6 py-4 hidden lg:block">
                                     {{ strtolower(str_replace(' ', '', $user->username)) }}
                                 </td>
+
                                 <td class="px-6 py-4">
                                     {{ $user->email }}
                                 </td>

@@ -2,12 +2,13 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\NilaiRapor;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Models\NilaiRapor;
 use Livewire\WithPagination;
-use Spatie\Permission\Models\Role;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class IndexNilaiRapor extends Component
 {
@@ -16,9 +17,9 @@ class IndexNilaiRapor extends Component
     public $semester = 1;
     public $updateUserRole = false;
     public $name;
-    public $role_id;
-    public $userId;
+    public $nilaiId;
     public $search;
+    public $siswa;
 
     protected $queryString = ['search'];
 
@@ -30,10 +31,30 @@ class IndexNilaiRapor extends Component
     public function render()
     {
         $user = Auth::user();
-        $nilai = NilaiRapor::where('user_id', $user->id)->where('semester', $this->semester)->orderBy('pelajaran_id', 'asc')->get();
+        if ($this->siswa != null) {
+            $dataNilai = NilaiRapor::where('user_id', $this->siswa->id)->where('semester', $this->semester)->orderBy('pelajaran_id', 'asc')->get();
+        } else {
+            $dataNilai = NilaiRapor::where('user_id', $user->id)->where('semester', $this->semester)->orderBy('pelajaran_id', 'asc')->get();
+            $this->siswa = $user;
+        }
 
         return view('nilai-rapor.nilai', [
-            'nilai' => $nilai
+            'nilai' => $dataNilai,
+            'siswa' => $this->siswa
         ]);
+    }
+
+    public function destroy($semester)
+    {
+        if (!Gate::allows('user_delete')) {
+            abort(403);
+        }
+
+        $user = Auth::user();
+        $nilai = NilaiRapor::where('user_id', $user->id)->where('semester', $semester)->get();
+
+        foreach ($nilai as $data) {
+            $data->delete();
+        }
     }
 }

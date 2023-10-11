@@ -28,16 +28,20 @@
                         {{ __('Pelajaran') }}
                     </x-nav-link>
                     @endcan
-		    @can('chapter_show')
+                    @can('chapter_show')
                     <x-nav-link href="{{ route('modul.index') }}" :active="request()->routeIs('modul.index')">
                         {{ __('Modul') }}
                     </x-nav-link>
-                    @endcan                    
-		    @can('user_show')
+                    @endcan
+                    @can('user_show')
                     <x-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index')">
                         {{ __('Kelola Pengguna') }}
                     </x-nav-link>
                     @endcan
+                    <x-nav-link href="{{ route('nilai-rapor.index') }}"
+                        :active="request()->routeIs('nilai-rapor.index')">
+                        {{ __('Nilai Rapor') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -135,7 +139,7 @@
                 {{ __('Pelajaran') }}
             </x-responsive-nav-link>
             @endcan
-	    @can('chapter_show')
+            @can('chapter_show')
             <x-responsive-nav-link href="{{ route('modul.index') }}" :active="request()->routeIs('modul.index')">
                 {{ __('Modul') }}
             </x-responsive-nav-link>
@@ -145,6 +149,11 @@
                 {{ __('Kelola Pengguna') }}
             </x-responsive-nav-link>
             @endcan
+            <x-responsive-nav-link href="{{ route('nilai-rapor.index') }}"
+                :active="request()->routeIs('nilai-rapor.index')">
+                {{ __('Nilai Rapor') }}
+            </x-responsive-nav-link>
+
         </div>
 
         <!-- Responsive Settings Options -->
