@@ -39,7 +39,7 @@
 <body class="font-sans antialiased">
     <x-banner />
 
-    <div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen bg-gray-100 pb-20 lg:pb-0">
         @livewire('navigation-menu')
 
         <!-- Page Heading -->
@@ -52,15 +52,18 @@
         @endif
 
         <!-- Page Content -->
-        <main>
+        <main class="">
             {{ $slot }}
         </main>
     </div>
+
+    @include('partials.bottom-navigation')
 
     @stack('modal')
     @include('sweetalert::alert')
     @livewireScripts
     @livewire('livewire-ui-modal')
+    <script src="{{ asset('js/navigation.js') }}"></script>
     @stack('script')
 </body>
 
