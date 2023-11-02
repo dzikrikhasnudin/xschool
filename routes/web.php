@@ -26,8 +26,8 @@ use App\Http\Livewire\IndexNilaiRapor;
 
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
 
-Route::get('print', function () {
-    return redirect('https://forms.gle/P9CMuvkDh7VonbdW9');
+Route::get('kuis-bahasa-indonesia-1', function () {
+    return redirect('https://forms.gle/DxwoQsnzbpaBk3hc6');
 });
 
 Route::middleware([
