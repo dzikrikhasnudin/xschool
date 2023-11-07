@@ -7411,6 +7411,7 @@ __webpack_require__.r(__webpack_exports__);
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"];
 window.Chart = chart_js_auto__WEBPACK_IMPORTED_MODULE_7__["default"];
+window.Swal = (sweetalert2__WEBPACK_IMPORTED_MODULE_6___default());
 alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"].plugin(_alpinejs_focus__WEBPACK_IMPORTED_MODULE_3__["default"]);
 alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"].plugin(_alpinejs_collapse__WEBPACK_IMPORTED_MODULE_4__["default"]);
 alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"].plugin(_alpinejs_intersect__WEBPACK_IMPORTED_MODULE_5__["default"]);

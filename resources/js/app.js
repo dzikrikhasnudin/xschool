@@ -11,6 +11,7 @@ import Chart from 'chart.js/auto'
 
 window.Alpine = Alpine;
 window.Chart = Chart;
+window.Swal = Swal;
 
 Alpine.plugin(focus);
 Alpine.plugin(collapse);

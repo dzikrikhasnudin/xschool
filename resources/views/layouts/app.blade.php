@@ -41,6 +41,9 @@
 
     <div class="min-h-screen bg-gray-100 pb-20 lg:pb-0">
         @livewire('navigation-menu')
+        {{-- @include('navigation-menu-old') --}}
+        @include('partials.sidebar')
+
 
         <!-- Page Heading -->
         @if (isset($header))
