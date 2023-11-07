@@ -58,11 +58,16 @@
                 </ul>
 
                 <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
-                    <li>
-                        <a href="#"
-                            class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign
-                            out</a>
-                    </li>
+
+                    <form method="POST" action="{{ route('logout') }}" x-data>
+                        @csrf
+                        <li>
+                            <a href="{{ route('logout') }}"
+                                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                @click.prevent="$root.submit();">Log
+                                out</a>
+                        </li>
+                    </form>
                 </ul>
             </div>
         </div>
