@@ -21,7 +21,7 @@
             </button>
         </div>
         <div>
-            <a href="https://flowbite.com" class="flex items-center justify-center mr-4">
+            <a href="{{ route('homepage') }}" class="flex items-center justify-center mr-4">
                 <x-application-mark class="block h-9 w-auto" />
             </a>
         </div>
