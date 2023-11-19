@@ -12,7 +12,7 @@
         </div>
     </x-slot>
 
-    <div class="py-6 lg:flex lg:flex-row flex-col-reverse flex">
+    <div class="py-6 lg:flex lg:flex-row md:max-w-7xl mx-auto flex-col-reverse flex">
         <div class="w-full mx-auto sm:px-6 lg:px-2 lg:w-2/5">
 
             @can('course_edit')
