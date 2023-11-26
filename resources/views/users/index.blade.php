@@ -66,7 +66,7 @@
 
                 <hr class="my-4">
 
-                <div class="flex gap-2">
+                <div class="flex flex-wrap gap-2">
                     {{-- Pagination Settings --}}
                     <select wire:model="paginate"
                         class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ">
@@ -76,8 +76,21 @@
                         <option value="25">25</option>
                         <option value="50">50</option>
                     </select>
+
+                    <select wire:model="angkatan"
+                        class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ">
+                        <option value="1">Angkatan 1</option>
+                        <option value="2" selected>Angkatan 2</option>
+                    </select>
+
+                    <select wire:model="sort"
+                        class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ">
+                        <option value="ASC">Urutkan A-Z</option>
+                        <option value="DESC" selected>Urutkan Z-A</option>
+                    </select>
+
                     {{-- Search Box --}}
-                    <div class="flex">
+                    <div class="flex lg:ml-auto">
                         <div class="relative w-full">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="currentColor"
@@ -120,6 +133,9 @@
                                     Peran
                                 </th>
                                 <th scope="col" class="px-6 py-3">
+                                    Angkatan
+                                </th>
+                                <th scope="col" class="px-6 py-3">
                                     Action
                                 </th>
                             </tr>
@@ -128,8 +144,8 @@
                             @php
                             $index = 1;
                             @endphp
-                            @foreach ($users as $user)
-                            <tr class="bg-white border-b 0">
+                            @forelse ($users as $user)
+                            <tr class="bg-white border-b" wire:key='{{ $user->id }}'>
                                 <td scope="col" class="p-2 text-center">
                                     {{ $index++ }}
                                 </td>
@@ -156,7 +172,17 @@
                                     {{ $user->getRoleNames()->first() == "Student" ? 'Siswa' :
                                     $user->getRoleNames()->first() }}
                                 </td>
+                                <td class="px-6 py-4 text-center">
+                                    {{ $user->group_class }}
+                                </td>
                                 <td class="px-6 py-4 flex gap-2 text-white">
+
+                                    <button
+                                        onclick="Livewire.emit('openModal', 'user-group', {{ json_encode(['user' => $user->id]) }})"
+                                        class="bg-teal-500 px-2 py-1 rounded hover:bg-teal-600 transition duration-300">
+                                        <i class="fa-solid fa-users m-auto"></i>
+                                    </button>
+
                                     {{-- Edit --}}
                                     <button wire:click="getUser({{ $user->id }})"
                                         class="bg-yellow-400 px-2 py-1 rounded hover:bg-yellow-500 transition duration-300">
@@ -170,8 +196,12 @@
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </td>
+
+                                @empty
+                            <tr class="bg-white border-b">
+                                <td class="px-6 py-4 text-center" colspan="8">Belum ada data pengguna.</td>
                             </tr>
-                            @endforeach
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

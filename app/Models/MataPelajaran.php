@@ -16,7 +16,7 @@ class MataPelajaran extends Model
 
     protected $table = 'mata_pelajaran';
     protected $fillable = [
-        'pelajaran'
+        'nama'
     ];
 
     public function nilai()

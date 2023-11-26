@@ -12,14 +12,20 @@ class UserIndex extends Component
 {
     use WithPagination;
 
-    public $paginate = 5;
+    public $paginate = 10;
+    public $angkatan = 2;
     public $updateUserRole = false;
     public $name;
     public $role_id;
     public $userId;
     public $search;
+    public $sort = 'ASC';
 
     protected $queryString = ['search'];
+    protected $listeners = [
+        'groupUpdated' => 'handleGroupUpdated',
+    ];
+
 
     public function mount()
     {
@@ -35,8 +41,8 @@ class UserIndex extends Component
         return view('users.index', [
             'roles' => Role::all(),
             'users' => $this->search === null ?
-                User::with('roles')->latest()->paginate($this->paginate) :
-                User::where('name', 'like', '%' . $this->search . '%')->with('roles')->paginate($this->paginate)
+                User::with('roles')->where('group_class', $this->angkatan)->orderBy('name', $this->sort)->paginate($this->paginate) :
+                User::where('name', 'like', '%' . $this->search . '%')->where('group_class', $this->angkatan)->with('roles')->orderBy('name', $this->sort)->paginate($this->paginate)
         ])
             ->layout('layouts.app');
     }
@@ -71,5 +77,10 @@ class UserIndex extends Component
 
         $user->syncRoles($this->role_id);
         session()->flash('message', 'Peran ' . $user->name .  ' telah diubah menjadi ' . $user->getRoleNames()->first());
+    }
+
+    public function handleGroupUpdated($user)
+    {
+        session()->flash('message', $user['name'] . ' telah dimasukkan ke angkatan ' . $user['group_class']);
     }
 }

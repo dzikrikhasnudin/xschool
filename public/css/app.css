@@ -2381,6 +2381,18 @@ input:checked + .toggle-bg{
   --tw-bg-opacity: 1;
   background-color: rgb(253 253 234 / var(--tw-bg-opacity));
 }
+.bg-teal-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 189 202 / var(--tw-bg-opacity));
+}
+.bg-slate-100{
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+.bg-slate-50{
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 250 252 / var(--tw-bg-opacity));
+}
 .bg-opacity-25{
   --tw-bg-opacity: 0.25;
 }
@@ -4000,6 +4012,10 @@ input:checked + .toggle-bg{
     margin-top: 0px;
   }
 
+  .lg\:ml-auto{
+    margin-left: auto;
+  }
+
   .lg\:block{
     display: block;
   }
@@ -4026,10 +4042,6 @@ input:checked + .toggle-bg{
 
   .lg\:w-full{
     width: 100%;
-  }
-
-  .lg\:max-w-7xl{
-    max-width: 80rem;
   }
 
   .lg\:grid-cols-2{
