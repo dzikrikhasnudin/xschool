@@ -1746,6 +1746,9 @@ input:checked + .toggle-bg{
 .mt-8{
   margin-top: 2rem;
 }
+.mb-20{
+  margin-bottom: 5rem;
+}
 .block{
   display: block;
 }
@@ -3692,6 +3695,10 @@ input:checked + .toggle-bg{
     margin-top: 0px;
   }
 
+  .sm\:mb-16{
+    margin-bottom: 4rem;
+  }
+
   .sm\:block{
     display: block;
   }
@@ -3870,6 +3877,10 @@ input:checked + .toggle-bg{
 
   .sm\:pt-0{
     padding-top: 0px;
+  }
+
+  .sm\:pb-16{
+    padding-bottom: 4rem;
   }
 
   .sm\:text-left{
