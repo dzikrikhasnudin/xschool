@@ -13,8 +13,8 @@ class IndexChapter extends Component
 
     use WithPagination;
 
-    public $statusUpdate = false;
-    public $paginate = 5;
+    public $statusUpdate = true;
+    public $paginate = 10;
     public $search;
 
     protected $queryString = ['search'];
@@ -42,13 +42,6 @@ class IndexChapter extends Component
         ]);
     }
 
-    public function getChapter($id)
-    {
-        $this->statusUpdate = true;
-        $chapter = Chapter::find($id);
-        $this->emit('getChapter', $chapter);
-    }
-
     public function destroy($id)
     {
         if ($id) {
@@ -66,7 +59,6 @@ class IndexChapter extends Component
     public function handleUpdated($chapter)
     {
 
-        $this->statusUpdate = false;
         session()->flash('message', 'Data bab telah diperbarui.');
     }
 }

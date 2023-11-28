@@ -4,32 +4,33 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Courses\Chapter;
+use App\Models\Courses\Course;
 use Illuminate\Support\Facades\Gate;
+use LivewireUI\Modal\ModalComponent;
 
-class UpdateChapter extends Component
+class UpdateChapter extends ModalComponent
 {
+
+    public $chapterId;
     public $courses;
-    public $chapters;
     public $name;
     public $course_id;
-    public $chapterId;
-    public $statusUpdate = false;
-    public $search;
 
-    protected $listeners = [
-        'getChapter' => 'showChapter'
-    ];
+    public $chapter;
+
+
+    public function mount()
+    {
+        $this->chapter = Chapter::find($this->chapterId);
+        $this->courses = Course::all();
+
+        $this->name = $this->chapter->name;
+        $this->course_id = $this->chapter->course_id;
+    }
 
     public function render()
     {
         return view('courses.chapters.update');
-    }
-
-    public function showChapter($chapter)
-    {
-        $this->name = $chapter['name'];
-        $this->course_id = $chapter['course_id'];
-        $this->chapterId = $chapter['id'];
     }
 
     public function update()
@@ -38,22 +39,12 @@ class UpdateChapter extends Component
             abort(403);
         }
 
-        if ($this->chapterId) {
-            $chapter = Chapter::find($this->chapterId);
-            $chapter->update([
-                'name' => $this->name,
-                'course_id' => $this->course_id,
-            ]);
+        $this->chapter->update([
+            'name' => $this->name,
+            'course_id' => $this->course_id,
+        ]);
 
-            $this->resetInput();
-
-            $this->emit('chapterUpdated', $chapter);
-        }
-    }
-
-    private function resetInput()
-    {
-        $this->name = null;
-        $this->course_id = null;
+        $this->emit('chapterUpdated', $this->chapter);
+        $this->emit('closeModal');
     }
 }

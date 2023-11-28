@@ -18,14 +18,6 @@
             </div>
             @endif
 
-            @if ($statusUpdate)
-            <livewire:update-chapter :courses="$courses" :search="$search"></livewire:update-chapter>
-            @else
-            <livewire:tambah-chapter :courses="$courses"></livewire:tambah-chapter>
-            @endif
-
-            <hr class="my-4">
-
             <div class="flex gap-2">
                 {{-- Pagination Settings --}}
                 <select wire:model="paginate"
@@ -92,7 +84,8 @@
                             </td>
                             <td class="px-6 py-4 flex gap-2 text-white">
                                 {{-- Edit --}}
-                                <button wire:click="getChapter({{ $chapter->id }})"
+                                <button
+                                    onclick="Livewire.emit('openModal', 'update-chapter', {{ json_encode(['chapterId' => $chapter->id]) }})"
                                     class="bg-yellow-400 px-2 py-1 rounded hover:bg-yellow-500 transition duration-300">
                                     <i class="fa-solid fa-pen-to-square m-auto "></i>
                                 </button>

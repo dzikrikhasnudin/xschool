@@ -23,29 +23,4 @@ class ChapterController extends Controller
 
         return view('courses.chapters.index');
     }
-
-    public function store(Request $request)
-    {
-        if (!Gate::allows('chapter_create')) {
-            abort(403);
-        }
-
-        $validator = Validator::make($request->all(), [
-            'name' => 'string',
-        ]);
-
-        if ($validator->fails()) {
-            Alert::toast('Chapter must be string', 'error');
-            return back();
-        }
-
-        Chapter::create([
-            'name' => $request->name,
-            'course_id' => $request->course_id,
-        ]);
-
-        Alert::toast('Data berhasil disimpan', 'success');
-
-        return redirect()->back();
-    }
 }
