@@ -55,7 +55,7 @@
         @endif
 
         <!-- Page Content -->
-        <main class="md:max-w-2xl lg:max-w-4xl xl:max-w-6xl lg:ml-auto md:ml-56 lg:pl-32 xl:pl-12">
+        <main class="md:max-w-2xl lg:max-w-4xl xl:max-w-7xl md:ml-56 lg:pl-32 xl:pl-12">
             {{ $slot }}
         </main>
     </div>
