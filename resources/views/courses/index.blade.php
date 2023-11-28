@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="title">Kelas</x-slot>
     <x-slot name="header">
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between  max-w-5xl items-center">
             <h2 class="font-semibold my-auto text-lg md:text-xl text-gray-800 leading-tight text-center mb-3">
                 Semua Kelas
             </h2>
@@ -16,8 +16,8 @@
     </x-slot>
 
     <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mx-4 md:grid-cols-3 wr">
+        <div class="sm:px-4">
+            <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mx-4 md:grid-cols-2">
                 @foreach ($courses as $course)
                 <div
                     class="bg-white text-center pb-4 rounded-xl hover:bg-slate-200 transition-all duration-300 overflow-hidden px-4">

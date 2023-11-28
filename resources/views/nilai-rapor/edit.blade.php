@@ -9,7 +9,7 @@
     </x-slot>
 
     <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-4">
             <div class="bg-white p-4 mx-4 rounded-lg mb-3">
 
                 <form class="md:p-6" action="{{ route('nilai-rapor.update', request()->semester) }}" method="POST">

@@ -1,6 +1,6 @@
 <div class="pt-2 pb-4">
     <div class="py-2 px-4 border-b border-slate-200">
-        <h2 class="text-xl font-bold">Tambah Kelas Baru</h2>
+        <h2 class="text-xl font-bold">Kelompok Pengguna</h2>
     </div>
     <div class="bg-white overflow-hidden sm:rounded-lg p-4">
         <form wire:submit.prevent='updateGroupClass' method="POST">

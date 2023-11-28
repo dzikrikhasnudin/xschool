@@ -48,14 +48,14 @@
         <!-- Page Heading -->
         @if (isset($header))
         <header class="bg-white shadow mt-16">
-            <div class="max-w-7xl mx-auto pt-4 pb-2 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto pt-4 pb-2 px-4 sm:px-6 lg:px-4 md:ml-60 lg:ml-54 lg:pl-10">
                 {{ $header }}
             </div>
         </header>
         @endif
 
         <!-- Page Content -->
-        <main class="">
+        <main class="md:max-w-2xl lg:max-w-4xl xl:max-w-6xl lg:ml-auto md:ml-56 lg:pl-32 xl:pl-12">
             {{ $slot }}
         </main>
     </div>

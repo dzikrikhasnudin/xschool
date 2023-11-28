@@ -80,7 +80,7 @@
             @endforelse
         </div>
         <div
-            class="w-full mx-auto p-4 mb-3 bg-white overflow-hidden shadow-xl sm:rounded-lg lg:w-full lg:block lg:mr-6">
+            class="w-full mx-auto p-4 mb-3 bg-white overflow-hidden shadow-xl sm:rounded-lg lg:w-full  lg:block lg:mr-6">
             <iframe class="w-full aspect-video p-0 lg:p-4" src="https://www.youtube.com/embed{{ $videoId }}?autoplay=0"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

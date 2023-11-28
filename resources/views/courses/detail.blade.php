@@ -33,7 +33,7 @@
             @endif
 
             <div class="bg-white p-4 mx-4 rounded-lg mb-3" x-data="{ open: false }">
-                <div class="flex justify-between">
+                <div class="flex justify-between flex-wrap">
                     <p class="text-lg font-semibold">Pengelolaan Kelas</p>
                     <div class="flex gap-1 text-white">
 

@@ -17,7 +17,7 @@
     </x-slot>
 
     <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-4">
             <div class="bg-white p-4 mx-4 rounded-lg mb-3">
                 @if (Auth::user()->getRoleNames()->first() == "SuperAdmin")
                 <livewire:rapor-siswa />

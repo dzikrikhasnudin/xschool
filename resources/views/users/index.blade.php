@@ -16,7 +16,7 @@
     </x-slot>
 
     <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-4">
             <div class="bg-white p-4 mx-4 rounded-lg mb-3">
 
                 @if (session()->has('message'))
@@ -129,10 +129,10 @@
                                 <th scope="col" class="px-6 py-3">
                                     Email
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-3 hidden">
                                     Peran
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-3 hidden">
                                     Angkatan
                                 </th>
                                 <th scope="col" class="px-6 py-3">
@@ -168,11 +168,11 @@
                                 <td class="px-6 py-4">
                                     {{ $user->email }}
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-6 py-4 hidden">
                                     {{ $user->getRoleNames()->first() == "Student" ? 'Siswa' :
                                     $user->getRoleNames()->first() }}
                                 </td>
-                                <td class="px-6 py-4 text-center">
+                                <td class="px-6 py-4 text-center hidden">
                                     {{ $user->group_class }}
                                 </td>
                                 <td class="px-6 py-4 flex gap-2 text-white">
