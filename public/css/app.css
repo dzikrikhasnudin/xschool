@@ -4016,6 +4016,10 @@ input:checked + .toggle-bg{
     margin-left: 15rem;
   }
 
+  .md\:inline-block{
+    display: inline-block;
+  }
+
   .md\:flex{
     display: flex;
   }

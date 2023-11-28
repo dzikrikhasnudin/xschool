@@ -14,16 +14,15 @@ class UserIndex extends Component
 
     public $paginate = 10;
     public $angkatan = 2;
-    public $updateUserRole = false;
-    public $name;
-    public $role_id;
-    public $userId;
+
+
     public $search;
     public $sort = 'ASC';
 
     protected $queryString = ['search'];
     protected $listeners = [
         'groupUpdated' => 'handleGroupUpdated',
+        'roleUpdated' => 'handleRoleUpdated',
     ];
 
 
@@ -47,14 +46,6 @@ class UserIndex extends Component
             ->layout('layouts.app');
     }
 
-    public function getUser($id)
-    {
-        $user = User::find($id);
-        $this->name = $user->name;
-        $this->role_id = $user->roles->pluck('id')->first();
-        $this->userId = $user->id;
-    }
-
     public function destroy($id)
     {
         if (!Gate::allows('user_delete')) {
@@ -67,20 +58,13 @@ class UserIndex extends Component
         }
     }
 
-    public function updateRole()
-    {
-        if (!Gate::allows('user_update')) {
-            abort(403);
-        }
-
-        $user = User::find($this->userId);
-
-        $user->syncRoles($this->role_id);
-        session()->flash('message', 'Peran ' . $user->name .  ' telah diubah menjadi ' . $user->getRoleNames()->first());
-    }
-
     public function handleGroupUpdated($user)
     {
         session()->flash('message', $user['name'] . ' telah dimasukkan ke angkatan ' . $user['group_class']);
+    }
+
+    public function handleRoleUpdated($user)
+    {
+        session()->flash('message', 'Peran ' . $user['name'] .  ' telah diubah.');
     }
 }

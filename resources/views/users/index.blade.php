@@ -35,36 +35,6 @@
                 </div>
                 @endif
 
-                <form wire:submit.prevent="updateRole">
-                    <h2 class="font-semibold my-auto text-md md:text-xl text-gray-800 leading-tight mb-3">
-                        Ubah Peran Pengguna
-                    </h2>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 mb-3">
-                        <input type="hidden" wire:model="userId">
-                        <div>
-                            <input type="text" wire:model="name"
-                                class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                placeholder="Nama Pengguna" required disabled>
-                        </div>
-
-                        <div class="flex flex-col lg:flex-row items-center">
-                            <select wire:model="role_id"
-                                class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                                <option>Pilih Peran</option>
-                                @foreach ($roles as $role)
-                                <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                @endforeach
-                            </select>
-                            <button type="submit"
-                                class="inline-flex items-center py-2.5 px-5 lg:px-3 mt-3 lg:mt-0 lg:ml-2 text-xs font-semibold text-white bg-gray-800 tracking-widest rounded-lg border border-gray-700 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 ">
-                                SUBMIT
-                            </button>
-                        </div>
-                    </div>
-                </form>
-
-                <hr class="my-4">
 
                 <div class="flex flex-wrap gap-2">
                     {{-- Pagination Settings --}}
@@ -129,7 +99,7 @@
                                 <th scope="col" class="px-6 py-3">
                                     Email
                                 </th>
-                                <th scope="col" class="px-6 py-3 hidden">
+                                <th scope="col" class="px-6 py-3 ">
                                     Peran
                                 </th>
                                 <th scope="col" class="px-6 py-3 hidden">
@@ -168,7 +138,7 @@
                                 <td class="px-6 py-4">
                                     {{ $user->email }}
                                 </td>
-                                <td class="px-6 py-4 hidden">
+                                <td class="px-6 py-4 ">
                                     {{ $user->getRoleNames()->first() == "Student" ? 'Siswa' :
                                     $user->getRoleNames()->first() }}
                                 </td>
@@ -184,9 +154,10 @@
                                     </button>
 
                                     {{-- Edit --}}
-                                    <button wire:click="getUser({{ $user->id }})"
+                                    <button
+                                        onclick="Livewire.emit('openModal', 'user-role', {{ json_encode(['user' => $user->id]) }})"
                                         class="bg-yellow-400 px-2 py-1 rounded hover:bg-yellow-500 transition duration-300">
-                                        <i class="fa-solid fa-pen-to-square m-auto "></i>
+                                        <i class="fa-solid fa-user-gear"></i>
                                     </button>
                                     @php
                                     $userId = $user->id;
