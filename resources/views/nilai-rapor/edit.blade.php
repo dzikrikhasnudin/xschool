@@ -33,7 +33,7 @@
 
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
-                    @foreach ($nilai as $data)
+                    @forelse ($nilai as $data)
                     <div class="mb-3 md:flex">
                         <label for="{{ strtolower($data->pelajaran->nama) }}"
                             class="w-full block mb-2  font-medium text-gray-900 ">{{ $data->pelajaran->nama
@@ -43,7 +43,11 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             required>
                     </div>
-                    @endforeach
+                    @empty
+                    <div class="mb-3 md:flex">
+                        <h3 class="p-2 text-lg">Anda belum melakukan input nilai rapor semester {{ $semester }}</h3>
+                    </div>
+                    @endforelse
 
                     <small class="italic flex text-left md:text-right">Catatan: Isi dengan nilai 0 apabila tidak ada
                         nilai dengan

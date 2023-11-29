@@ -18,14 +18,6 @@
             </div>
             @endif
 
-            @if ($statusUpdate)
-            <livewire:update-pelajaran :courses="$courses" :search="$search"></livewire:update-pelajaran>
-            @else
-            <livewire:tambah-pelajaran :courses="$courses"></livewire:tambah-pelajaran>
-            @endif
-
-            <hr class="my-4">
-
             <div class="flex gap-2">
                 {{-- Pagination Settings --}}
                 <select wire:model="paginate"
@@ -96,10 +88,10 @@
                             <td class="px-6 py-4">
                                 {{ $lesson->video }}
                             </td>
-                            <td class="px-6 py-4 flex gap-2 text-white"
-                                x-data="{ scroll: () => { $el.scrollTo(0, $el.scrollHeight); } }">
+                            <td class="px-6 py-4 flex gap-2 text-white">
                                 {{-- Edit --}}
-                                <button wire:click="getLesson({{ $lesson->id }})" x-intersect="scroll()"
+                                <button
+                                    wire:click="$emit('openModal', 'update-pelajaran', {{ json_encode(['lessonId' => $lesson->id]) }})"
                                     class="bg-yellow-400 px-2 py-1 rounded hover:bg-yellow-500 transition duration-300">
                                     <i class="fa-solid fa-pen-to-square m-auto "></i>
                                 </button>

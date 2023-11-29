@@ -30,7 +30,7 @@
 
         @if (Auth::user()->getRoleNames()->first() == "Student")
         <!-- Dropdown menu -->
-        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdownRapor"
             class="text-white bg-teal-500 hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-teal-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             type="button">Aksi<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                 fill="none" viewBox="0 0 10 6">
@@ -39,7 +39,7 @@
             </svg>
         </button>
 
-        <div id="dropdown"
+        <div id="dropdownRapor"
             class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-48 dark:bg-gray-700">
             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                 <li>

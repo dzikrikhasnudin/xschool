@@ -22,32 +22,4 @@ class LessonController extends Controller
 
         return view('courses.lessons.index');
     }
-
-    public function store(Request $request)
-    {
-
-        if (!Gate::allows('lesson_create')) {
-            abort(403);
-        }
-
-        $validator = Validator::make($request->all(), [
-            'name' => 'string',
-            'video' => 'string',
-        ]);
-
-        if ($validator->fails()) {
-            Alert::toast('Lessons must be string', 'error');
-            return back();
-        }
-
-        Lesson::create([
-            'name' => $request->name,
-            'video' => $request->video,
-            'chapter_id' => $request->chapter_id,
-        ]);
-
-        Alert::toast('Data berhasil disimpan', 'success');
-
-        return redirect()->back();
-    }
 }

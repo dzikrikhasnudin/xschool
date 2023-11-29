@@ -4,18 +4,23 @@ namespace App\Http\Livewire;
 
 use App\Models\Courses\Chapter;
 use App\Models\Courses\Course;
+use App\Models\Courses\Lesson;
 use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 
-class CreateChapter extends ModalComponent
+class CreateLesson extends ModalComponent
 {
     public $courses;
+    public $courseId;
+
     public $name;
-    public $course_id;
+    public $chapter_id;
+    public $video;
 
     protected $rules = [
         'name' => 'required|min:5|string',
-        'course_id' => 'required'
+        'chapter_id' => 'required',
+        'video' => 'required|min:11'
     ];
 
     protected $messages = [
@@ -26,7 +31,8 @@ class CreateChapter extends ModalComponent
 
     protected $validationAttributes = [
         'name' => 'Judul Bab',
-        'course_id' => 'Course ID'
+        'chapter_id' => 'Bab',
+        'video' => 'Video Pembelajaran'
     ];
 
     public function mount()
@@ -35,19 +41,21 @@ class CreateChapter extends ModalComponent
     }
     public function render()
     {
-        return view('courses.chapters.create');
+        $chapters = Chapter::where('course_id', $this->courseId)->get();
+
+        return view('courses.lessons.create', compact('chapters'));
     }
 
     public function save()
     {
-        if (!Gate::allows('chapter_create')) {
+        if (!Gate::allows('lesson_create')) {
             abort(403);
         }
 
-        $chapter = $this->validate();
-        Chapter::create($chapter);
+        $lesson = $this->validate();
+        Lesson::create($lesson);
 
-        $this->emit('chapterStored', $chapter);
+        $this->emit('lessonStored', $lesson);
 
         $this->emit('closeModal');
     }

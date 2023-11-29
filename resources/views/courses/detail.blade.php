@@ -38,9 +38,16 @@
                     <div class="flex gap-1 text-white">
 
                         {{-- Add --}}
-                        <button data-modal-target="tambah-data" data-modal-toggle="tambah-data"
-                            class="bg-teal-500 px-2 py-1 rounded hover:bg-teal-700 transition duration-300">
+                        <button
+                            onclick="Livewire.emit('openModal', 'create-chapter', {{ json_encode(['course_id' => $course->id]) }})"
+                            class="bg-sky-600 px-2 py-1 rounded hover:bg-teal-700 transition duration-300">
                             <i class="fa-solid fa-file-circle-plus"></i>
+                        </button>
+
+                        <button
+                            onclick="Livewire.emit('openModal', 'create-lesson', {{ json_encode(['courseId' => $course->id]) }})"
+                            class="bg-teal-500 px-2 py-1 rounded hover:bg-teal-700 transition duration-300">
+                            <i class="fa-brands fa-youtube"></i>
                         </button>
 
                         {{-- Edit --}}
@@ -204,4 +211,18 @@
     @include('courses._add')
     @endpush
     @endcan
+
+    @push('script')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        Livewire.on('lessonStored', lessonId => {
+            Swal.fire({
+                title: "Good job!",
+                text: "Data berhasil disimpan!",
+                icon: "success"
+                });
+        });
+
+    </script>
+    @endpush
 </x-app-layout>

@@ -40,7 +40,7 @@ Route::middleware([
     Route::resource('kelas', CourseController::class)->except(['edit']);
     Route::get('kelas/{course}/{lesson}', [CourseController::class, 'play'])->name('course.playing');
     Route::get('bab', [ChapterController::class, 'index'])->name('chapter.index');
-    Route::resource('pelajaran', LessonController::class)->except(['update', 'destroy', 'edit', 'show']);
+    Route::get('pelajaran', [LessonController::class, 'index'])->name('lesson.index');
     Route::get('user', UserIndex::class)->name('user.index');
     Route::get('modul', IndexModul::class)->name('modul.index');
     Route::resource('nilai-rapor', NilaiRaporController::class)->except('edit', 'destroy', 'update');

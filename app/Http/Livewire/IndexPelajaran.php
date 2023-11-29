@@ -12,8 +12,7 @@ class IndexPelajaran extends Component
 {
     use WithPagination;
 
-    public $statusUpdate = false;
-    public $paginate = 5;
+    public $paginate = 10;
     public $search;
 
     protected $queryString = ['search'];
@@ -43,19 +42,11 @@ class IndexPelajaran extends Component
         ]);
     }
 
-    public function getLesson($id)
-    {
-        $this->statusUpdate = true;
-        $lesson = Lesson::find($id);
-        $this->emit('getLesson', $lesson);
-    }
-
     public function destroy($id)
     {
         if ($id) {
             $data = Lesson::find($id);
             $data->delete();
-            $this->statusUpdate = false;
         }
     }
 
@@ -67,7 +58,6 @@ class IndexPelajaran extends Component
     public function handleUpdated($lesson)
     {
 
-        $this->statusUpdate = false;
         session()->flash('message', 'Data pelajaran telah diperbarui.');
     }
 }

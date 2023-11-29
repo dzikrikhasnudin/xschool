@@ -18,6 +18,22 @@ class UpdateChapter extends ModalComponent
 
     public $chapter;
 
+    protected $rules = [
+        'name' => 'required|min:5|string',
+        'course_id' => 'required'
+    ];
+
+    protected $messages = [
+        'min' => ':attribute harus terdiri dari minimal :min karakter.',
+        'required' => ':attribute harus diisi.',
+        'string' => ':attribute harus berupa string.'
+    ];
+
+    protected $validationAttributes = [
+        'name' => 'Judul Bab',
+        'course_id' => 'Course ID'
+    ];
+
 
     public function mount()
     {
@@ -38,6 +54,8 @@ class UpdateChapter extends ModalComponent
         if (!Gate::allows('chapter_update')) {
             abort(403);
         }
+
+        $this->validate();
 
         $this->chapter->update([
             'name' => $this->name,

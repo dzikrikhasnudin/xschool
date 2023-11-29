@@ -3,35 +3,60 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\Courses\Course;
 use App\Models\Courses\Lesson;
+use App\Models\Courses\Chapter;
 use Illuminate\Support\Facades\Gate;
+use LivewireUI\Modal\ModalComponent;
 
-class UpdatePelajaran extends Component
+class UpdatePelajaran extends ModalComponent
 {
     public $courses;
-    public $lessons;
+    public $courseId;
+
+
+    public $lesson;
     public $name;
     public $chapter_id;
     public $video;
-    public $lessonId;
-    public $statusUpdate = false;
+
     public $search;
 
-    protected $listeners = [
-        'getLesson' => 'showLesson'
+    protected $rules = [
+        'name' => 'required|min:5|string',
+        'chapter_id' => 'required',
+        'video' => 'required|min:11'
     ];
+
+    protected $messages = [
+        'min' => ':attribute harus terdiri dari minimal :min karakter.',
+        'required' => ':attribute harus diisi.',
+        'string' => ':attribute harus berupa string.'
+    ];
+
+    protected $validationAttributes = [
+        'name' => 'Judul Bab',
+        'chapter_id' => 'Bab',
+        'video' => 'Video Pembelajaran'
+    ];
+
+    public function mount($lessonId)
+    {
+        $this->lesson = Lesson::find($lessonId);
+        $chapter = Chapter::find($this->lesson->chapter_id);
+
+        $this->courses = Course::all();
+        $this->name = $this->lesson->name;
+        $this->video = $this->lesson->video;
+        $this->chapter_id = $chapter->id;
+        $this->courseId = $chapter->course->id;
+    }
 
     public function render()
     {
-        return view('courses.lessons.update');
-    }
+        $chapters = Chapter::where('course_id', $this->courseId)->get();
 
-    public function showLesson($lesson)
-    {
-        $this->name = $lesson['name'];
-        $this->chapter_id = $lesson['chapter_id'];
-        $this->video = $lesson['video'];
-        $this->lessonId = $lesson['id'];
+        return view('courses.lessons.update', compact('chapters'));
     }
 
     public function update()
@@ -40,25 +65,15 @@ class UpdatePelajaran extends Component
             abort(403);
         }
 
-        if ($this->lessonId) {
-            $lesson = Lesson::find($this->lessonId);
-            $lesson->update([
-                'name' => $this->name,
-                'chapter_id' => $this->chapter_id,
-                'video' => $this->video
-            ]);
+        $this->validate();
 
+        $this->lesson->update([
+            'name' => $this->name,
+            'chapter_id' => $this->chapter_id,
+            'video' => $this->video
+        ]);
 
-            $this->resetInput();
-
-            $this->emit('lessonUpdated', $lesson);
-        }
-    }
-
-    private function resetInput()
-    {
-        $this->name = null;
-        $this->chapter_id = null;
-        $this->video = null;
+        $this->emit('lessonUpdated', $this->lesson);
+        $this->emit('closeModal');
     }
 }
