@@ -7,6 +7,7 @@ use App\Http\Controllers\Courses\QuizController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NilaiRaporController;
+use App\Http\Livewire\College\IndexCollege;
 use App\Http\Livewire\IndexPelajaran;
 use App\Http\Livewire\UserIndex;
 use Illuminate\Support\Facades\Route;
@@ -46,5 +47,6 @@ Route::middleware([
     Route::resource('nilai-rapor', NilaiRaporController::class)->except('edit', 'destroy', 'update');
     Route::get('nilai-rapor/semester-{semester}/edit', [NilaiRaporController::class, 'edit'])->name('nilai-rapor.edit');
     Route::delete('nilai-rapor/{user}/semester-{semester}', [NilaiRaporController::class, 'destroy'])->name('nilai-rapor.destroy');
-    route::put('nilai-rapor/semester-{semester}', [NilaiRaporController::class, 'update'])->name('nilai-rapor.update');
+    Route::put('nilai-rapor/semester-{semester}', [NilaiRaporController::class, 'update'])->name('nilai-rapor.update');
+    Route::get('/daftar-ptn', IndexCollege::class)->name('college.index');
 });
