@@ -1,13 +1,13 @@
 <div>
-    <x-slot name="title">Daftar PTN</x-slot>
+    <x-slot name="title">Data Skor UTBK</x-slot>
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold my-auto text-lg md:text-xl text-gray-800 leading-tight text-center mb-3">
-                Semua PTN
+                Data Skor UTBK
             </h2>
 
             @can('user_show')
-            <button onclick="Livewire.emit('openModal', 'college.create-college')"
+            <button onclick="Livewire.emit('openModal', 'utbk.create-score')"
                 class="bg-teal-600 px-4 py-2 text-white rounded-full hover:bg-teal-700 text-center inline-block"> <i
                     class="fas fa-plus"></i>
                 Tambah</button>
@@ -45,6 +45,14 @@
                         <option value="50">50</option>
                     </select>
 
+                    <select wire:model="filterPtn"
+                        class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ">
+                        <option value="">Filter PTN</option>
+                        @foreach ($campus as $ptn)
+                        <option value="{{ $ptn->kampus->id }}">{{ $ptn->kampus->singkatan }}</option>
+                        @endforeach
+                    </select>
+
                     <select wire:model="sort"
                         class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ">
                         <option value="ASC">Urutkan A-Z</option>
@@ -78,11 +86,20 @@
                                 <th scope="col" class="p-2 text-center">
                                     No
                                 </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Nama PTN
+                                <th scope="col" class="px-6 py-3 text-center">
+                                    PTN
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Singkatan
+                                    Program Studi
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-center">
+                                    Rata-Rata
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-center">
+                                    Hasil
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-center">
+                                    Tahun
                                 </th>
                                 @can('chapter_create')
                                 <th scope="col" class="px-6 py-3 text-center">
@@ -95,48 +112,66 @@
                             @php
                             $index = 1;
                             @endphp
-                            @forelse ($colleges as $college)
-                            <tr class="bg-white border-b" wire:key='{{ $college->id }}'>
+                            @forelse ($scores as $score)
+                            <tr class="bg-white border-b" wire:key='{{ $score->id }}'>
                                 <td scope="col" class="p-2 text-center">
                                     {{ $index++ }}
                                 </td>
+                                <td class="px-6 py-4 text-center cursor-pointer hover:underline"
+                                    data-popover-target="nama_ptn_{{ $score->id }}">
+                                    {{ $score->kampus->singkatan }}
+                                    <div data-popover id="nama_ptn_{{ $score->id }}" role="tooltip"
+                                        class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                                        <div class="px-3 py-2">
+                                            <p>{{ $score->kampus->nama_ptn }}</p>
+                                        </div>
+                                        <div data-popper-arrow></div>
+                                    </div>
+                                </td>
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $college->nama_ptn }}
+                                    {{ $score->program_studi }}
+
                                 </th>
 
-                                <td class="px-6 py-4">
-                                    {{ $college->singkatan }}
+                                <td class="px-6 py-4 text-center">
+                                    {{ $score->skor }}
                                 </td>
-                                @can('chapter_create')
+                                <td class="px-6 py-4 text-center">
+                                    {{ $score->hasil }}
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    {{ $score->tahun }}
+                                </td>
                                 <td class="px-6 py-4 flex gap-2 text-white justify-center">
 
+                                    @can('chapter_create')
                                     {{-- Edit --}}
                                     <button
-                                        onclick="Livewire.emit('openModal', 'college.update-college', {{ json_encode(['college' => $college->id]) }})"
+                                        onclick="Livewire.emit('openModal', 'utbk.update-score', {{ json_encode(['scoreId' => $score->id]) }})"
                                         class="bg-yellow-400 px-2 py-1 rounded hover:bg-yellow-500 transition duration-300">
                                         <i class="fa-solid fa-pen-to-square m-auto "></i>
                                     </button>
                                     @php
-                                    $collegeId = $college->id;
+                                    $scoreId = $score->id;
                                     @endphp
-                                    <button wire:click="$emit('triggerDelete', {{ $collegeId }})"
+                                    <button wire:click="$emit('triggerDelete', {{ $scoreId }})"
                                         class="bg-red-600 px-2 py-1 rounded hover:bg-red-700 transition duration-300">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
+                                    @endcan
                                 </td>
-                                @endcan
 
                                 @empty
                             <tr class="bg-white border-b">
-                                <td class="px-6 py-4 text-center" colspan="8">Belum ada data PTN.</td>
+                                <td class="px-6 py-4 text-center" colspan="8">Belum ada data Skor UTBK.</td>
                             </tr>
                             @endforelse
                         </tbody>
                     </table>
                 </div>
                 <div class="py-3">
-                    {{ $colleges->links() }}
+                    {{ $scores->links() }}
                 </div>
             </div>
         </div>
@@ -147,10 +182,10 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
-        @this.on('triggerDelete', collegeId => {
+        @this.on('triggerDelete', scoreId => {
             Swal.fire({
                 title: 'Yakin hapus data?',
-                text: 'Data PTN ini akan dihapus permanen!',
+                text: 'Data Skor ini akan dihapus permanen!',
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: '#E12425',
@@ -161,12 +196,12 @@
          //if user clicks on delete
                 if (result.value) {
              // calling destroy method to delete
-                    @this.call('destroy', collegeId)
+                    @this.call('destroy', scoreId)
              // success response
-                    Swal.fire({title: 'Data PTN berhasil dihapus!', icon: 'success'});
+                    Swal.fire({title: 'Data Skor berhasil dihapus!', icon: 'success'});
                 } else {
                     Swal.fire({
-                        title: 'Hapus data PTN dibatalkan!',
+                        title: 'Hapus data Skor dibatalkan!',
                         icon: 'success'
                     });
                 }

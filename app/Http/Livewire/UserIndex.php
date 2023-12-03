@@ -54,7 +54,6 @@ class UserIndex extends Component
         if ($id) {
             $data = User::find($id);
             $data->delete();
-            $this->updateUserRole = false;
         }
     }
 

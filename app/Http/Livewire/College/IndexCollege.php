@@ -13,6 +13,7 @@ class IndexCollege extends Component
 
     public $paginate = 10;
     public $search;
+    public $sort = 'ASC';
 
     protected $queryString = ['search'];
 
@@ -28,10 +29,14 @@ class IndexCollege extends Component
 
     public function render()
     {
-        $colleges = College::all();
+        if ($this->search) {
+            $colleges = College::where('nama_ptn', 'like', '%' . $this->search . '%')->orWhere('singkatan', 'like', '%' . $this->search . '%');
+        } else {
+            $colleges = College::orderBy('nama_ptn', $this->sort);
+        }
 
         return view('kampus.index', [
-            'colleges' => $colleges
+            'colleges' => $colleges->paginate($this->paginate)
         ])->layout('layouts.app');;
     }
 

@@ -114,15 +114,22 @@
                     </svg>
                 </button>
                 <ul id="kampus" class="hidden py-2 space-y-2">
+                    @can('chapter_create')
                     <li>
                         <a href="{{ route('college.index') }}"
                             class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Daftar
                             PTN</a>
                     </li>
+                    @endcan
                     <li>
-                        <a href="#"
+                        <a href="{{ route('score.index') }}"
                             class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Data
                             Skor UTBK</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Daya
+                            Tampung</a>
                     </li>
                 </ul>
             </li>

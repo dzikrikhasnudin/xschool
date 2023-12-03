@@ -13,6 +13,7 @@ use App\Http\Livewire\UserIndex;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\IndexModul;
 use App\Http\Livewire\IndexNilaiRapor;
+use App\Http\Livewire\Utbk\IndexScore;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,4 +50,5 @@ Route::middleware([
     Route::delete('nilai-rapor/{user}/semester-{semester}', [NilaiRaporController::class, 'destroy'])->name('nilai-rapor.destroy');
     Route::put('nilai-rapor/semester-{semester}', [NilaiRaporController::class, 'update'])->name('nilai-rapor.update');
     Route::get('/daftar-ptn', IndexCollege::class)->name('college.index');
+    Route::get('/skor-utbk', IndexScore::class)->name('score.index');
 });

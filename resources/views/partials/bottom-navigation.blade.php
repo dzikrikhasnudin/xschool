@@ -1,6 +1,6 @@
 <div id="bottom-navigation"
     class="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-    <div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
+    <div class="grid h-full max-w-lg grid-cols-5 mx-auto font-medium">
         <x-bottom-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
             <svg class="w-5 h-5 mb-2 group-hover:text-teal-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor" viewBox="0 0 20 20">
@@ -29,6 +29,7 @@
             </svg>
             <span class="text-sm  group-hover:text-teal-600 ">Rapor</span>
         </x-bottom-nav-link>
+
         <x-bottom-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.*')">
             <svg class="w-5 h-5 mb-2  group-hover:text-teal-600 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor" viewBox="0 0 20 20">

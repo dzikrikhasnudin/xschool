@@ -46,4 +46,9 @@ class CreateCollege extends ModalComponent
 
         $this->emit('closeModal');
     }
+
+    public static function modalMaxWidth(): string
+    {
+        return '5xl';
+    }
 }

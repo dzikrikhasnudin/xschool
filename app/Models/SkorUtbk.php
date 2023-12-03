@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class College extends Model
+class SkorUtbk extends Model
 {
     use HasFactory;
 
@@ -14,13 +14,13 @@ class College extends Model
         'updated_at' => 'datetime:Y-m-d H:m:s'
     ];
 
-    protected $table = 'colleges';
+    protected $table = 'skor_utbk';
     protected $fillable = [
-        'nama_ptn', 'singkatan'
+        'program_studi', 'ptn_id', 'skor', 'hasil', 'tahun'
     ];
 
-    public function utbk()
+    public function kampus()
     {
-        return $this->hasMany(SkorUtbk::class);
+        return $this->belongsTo(College::class, 'ptn_id', 'id');
     }
 }
