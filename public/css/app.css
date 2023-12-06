@@ -2030,9 +2030,6 @@ input:checked + .toggle-bg{
 .grid-cols-7{
   grid-template-columns: repeat(7, minmax(0, 1fr));
 }
-.grid-cols-5{
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
 .flex-row{
   flex-direction: row;
 }
@@ -2207,10 +2204,6 @@ input:checked + .toggle-bg{
 .rounded-t-none{
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
-}
-.rounded-t-lg{
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
 }
 .border{
   border-width: 1px;
@@ -2621,9 +2614,6 @@ input:checked + .toggle-bg{
 }
 .text-right{
   text-align: right;
-}
-.text-end{
-  text-align: end;
 }
 .align-middle{
   vertical-align: middle;

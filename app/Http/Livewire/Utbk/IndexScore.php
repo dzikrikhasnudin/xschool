@@ -12,7 +12,7 @@ class IndexScore extends Component
     use WithPagination;
 
     public $paginate = 10;
-    public $sort = 'ASC';
+    public $sort;
     public $search;
     public $filterPtn;
 
@@ -30,8 +30,26 @@ class IndexScore extends Component
 
     public function render()
     {
-        $scores = SkorUtbk::with('kampus')->orderBy('program_studi', $this->sort);
+        $scores = SkorUtbk::with('kampus');
         $campus = SkorUtbk::distinct()->get('ptn_id');
+
+        switch ($this->sort) {
+            case 'AZ':
+                $scores->orderBy('program_studi', 'ASC');
+                break;
+            case 'ZA':
+                $scores->orderBy('program_studi', 'DESC');
+                break;
+            case 'skor_tertinggi':
+                $scores->orderBy('skor', 'DESC');
+                break;
+            case 'skor_terendah':
+                $scores->orderBy('skor', 'ASC');
+                break;
+            default;
+                $scores->orderBy('program_studi', 'ASC');
+                break;
+        }
 
         if ($this->filterPtn) {
             $scores->where('ptn_id', $this->filterPtn);
