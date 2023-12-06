@@ -36,14 +36,7 @@
 
                 <div class="flex flex-wrap gap-2">
                     {{-- Pagination Settings --}}
-                    <select wire:model="paginate"
-                        class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ">
-                        <option value="5" selected>5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                    </select>
+
 
                     <select wire:model="filterPtn"
                         class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ">
@@ -78,6 +71,15 @@
                                 placeholder="Search">
                         </div>
                     </div>
+
+                    <select wire:model="paginate"
+                        class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ">
+                        <option value="5" selected>5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
                 </div>
 
                 <hr class="my-4">
