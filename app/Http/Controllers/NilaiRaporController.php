@@ -24,7 +24,7 @@ class NilaiRaporController extends Controller
 
     public function create()
     {
-        $users = User::latest()->take(40)->orderBy('name', 'ASC')->get();
+        $users = User::where('group_class', 2)->orderBy('name', 'ASC')->get();
 
         $mataPelajaran = MataPelajaran::all();
         return view('nilai-rapor.create', [
