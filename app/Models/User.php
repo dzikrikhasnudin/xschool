@@ -48,4 +48,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(NilaiRapor::class);
     }
+
+    public function tryout()
+    {
+        return $this->hasMany(NilaiTryout::class);
+    }
 }
