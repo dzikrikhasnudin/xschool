@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\IndexModul;
 use App\Http\Livewire\IndexNilaiRapor;
 use App\Http\Livewire\NilaiTryout\CreateTryout;
+use App\Http\Livewire\NilaiTryout\DetailTryout;
 use App\Http\Livewire\NilaiTryout\IndexTryout;
 use App\Http\Livewire\Utbk\IndexScore;
 
@@ -55,4 +56,5 @@ Route::middleware([
     Route::get('/skor-utbk', IndexScore::class)->name('score.index');
     Route::get('/nilai-tryout', IndexTryout::class)->name('nilai-tryout.index');
     Route::get('/nilai-tryout/tambah', CreateTryout::class)->name('nilai-tryout.create');
+    Route::get('/nilai-tryout-{batch}/{username}', DetailTryout::class)->name('nilai-tryout.detail');
 });

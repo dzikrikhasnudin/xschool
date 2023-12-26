@@ -61,28 +61,28 @@
                     <div class="mb-3 md:flex items-center">
                         <label for="subtes_pu" class="w-full block mb-2  font-medium text-gray-900 ">Kemampuan Penalaran
                             Umum</label>
-                        <input type="number" wire:model='subtes_pu' id="subtes_pu" max="1000" min="100" step=".01"
+                        <input type="number" wire:model='subtes_pu' id="subtes_pu" max="1000" min="100"
                             class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5"
                             required>
                     </div>
                     <div class="mb-3 md:flex items-center">
                         <label for="subtes_ppu" class="w-full block mb-2  font-medium text-gray-900 ">Pengetahuan dan
                             Pemahaman Umum</label>
-                        <input type="number" wire:model='subtes_ppu' id="subtes_ppu" max="1000" min="100" step=".01"
+                        <input type="number" wire:model='subtes_ppu' id="subtes_ppu" max="1000" min="100"
                             class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5"
                             required>
                     </div>
                     <div class="mb-3 md:flex items-center">
                         <label for="subtes_pbm" class="w-full block mb-2  font-medium text-gray-900 ">Pemahaman Bacaan
                             dan Menulis</label>
-                        <input type="number" wire:model='subtes_pbm' id="subtes_pbm" max="1000" min="100" step=".01"
+                        <input type="number" wire:model='subtes_pbm' id="subtes_pbm" max="1000" min="100"
                             class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5"
                             required>
                     </div>
                     <div class="mb-3 md:flex items-center">
                         <label for="subtes_pk" class="w-full block mb-2  font-medium text-gray-900 ">Pengetahuan
                             Kuantitatif</label>
-                        <input type="number" wire:model='subtes_pk' id="subtes_pk" max="1000" min="100" step=".01"
+                        <input type="number" wire:model='subtes_pk' id="subtes_pk" max="1000" min="100"
                             class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5"
                             required>
                     </div>
@@ -93,7 +93,6 @@
                             Bahasa
                             Indonesia</label>
                         <input type="number" wire:model='subtes_litbindo' id="subtes_litbindo" max="1000" min="100"
-                            step=".01"
                             class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5"
                             required>
                     </div>
@@ -102,7 +101,6 @@
                             Bahasa
                             Inggris</label>
                         <input type="number" wire:model='subtes_litbing' id="subtes_litbing" max="1000" min="100"
-                            step=".01"
                             class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5"
                             required>
                     </div>
@@ -111,7 +109,7 @@
                     <div class="mb-3 md:flex items-center ">
                         <label for="subtes_pm" class="w-full block mb-2  font-bold text-xl text-gray-900 ">Tes Penalaran
                             Matematika</label>
-                        <input type="number" wire:model='subtes_pm' id="subtes_pm" max="1000" min="100" step=".01"
+                        <input type="number" wire:model='subtes_pm' id="subtes_pm" max="1000" min="100"
                             class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5"
                             required>
                     </div>

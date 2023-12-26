@@ -74,6 +74,6 @@ class CreateTryout extends Component
         $nilai = array($this->subtes_pu, $this->subtes_ppu, $this->subtes_pbm, $this->subtes_pk, $this->subtes_litbindo, $this->subtes_litbing, $this->subtes_pm);
         $average = array_sum($nilai) / 7;
 
-        return round($average, 2);
+        return $average;
     }
 }

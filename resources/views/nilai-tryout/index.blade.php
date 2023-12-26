@@ -28,7 +28,7 @@
                             $carbon::parse($data->tanggal_pelaksanaan)->isoFormat('D MMMM Y') }}
                         </p>
                     </div>
-                    <a href="#"
+                    <a href="{{ route('nilai-tryout.detail', ['batch' => $data->batch, 'username' => Auth::user()->username]) }}"
                         class=" text-white bg-teal-400 px-4 py-2 rounded-lg hover:bg-teal-500 transition-all duration-200">Lihat
                         Hasil</a>
                 </div>
