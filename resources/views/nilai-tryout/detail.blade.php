@@ -1,6 +1,5 @@
 <div>
 
-
     @if (!$isAdmin)
     <div class="py-10 mt-14">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-4">

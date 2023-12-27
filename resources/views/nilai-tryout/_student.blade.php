@@ -4,7 +4,7 @@
     <div class="flex justify-between gap-3 lg:justify-normal lg:flex-col-reverse items-center">
 
         <div class="hidden lg:block ">
-            <a href="#"
+            <a href="{{ route('nilai-tryout.leaderboard', $batch) }}"
                 class=" bg-amber-500 hover:bg-amber-400 transition-all duration-200 font-semibold text-white px-4 py-2 block mb-2 text-center rounded-lg"><i
                     class="fa-solid fa-ranking-star mr-2"></i> Leaderboard</a>
             <a href="{{ route('nilai-tryout.index') }}"
@@ -12,7 +12,7 @@
         </div>
 
         <div class="lg:text-center">
-            <h2 class="font-bold text-xl">{{ Auth::user()->name }}</h2>
+            <h2 class="font-bold text-xl line-clamp-1">{{ Auth::user()->name }}</h2>
             <p class="italic text-sm"> Kamu menjawab <span class="font-bold"> {{ $nilaiTryout->jumlah_benar
                     }}</span>
                 soal
@@ -20,8 +20,8 @@
             </p>
         </div>
 
-        <div class="flex flex-col gap-0 text-center px-3 py-2 rounded-xl bg-teal-500 text-white">
-            <small class="text-xs">Rata-rata</small>
+        <div class="flex flex-col gap-0  text-center px-3 py-2 rounded-xl bg-teal-500 text-white">
+            <small class="text-xs ">Rata-rata</small>
             <span class="font-bold text-2xl">{{ $nilaiTryout->rata_rata }}</span>
         </div>
 
@@ -73,7 +73,7 @@
 <hr class="my-2">
 
 <div class="flex flex-col gap-2 md:gap-4 mt-8 lg:hidden">
-    <a href="#"
+    <a href="{{ route('nilai-tryout.leaderboard', $batch) }}"
         class=" bg-amber-500 hover:bg-amber-400 transition-all duration-200 font-semibold text-white px-4 py-2 block text-center rounded-lg"><i
             class="fa-solid fa-ranking-star mr-2"></i> Leaderboard</a>
     <a href="{{ route('nilai-tryout.index') }}"

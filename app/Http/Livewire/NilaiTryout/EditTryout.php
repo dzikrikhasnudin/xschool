@@ -9,9 +9,10 @@ use App\Models\NilaiTryout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
-class CreateTryout extends Component
+class EditTryout extends Component
 {
     public $users;
+    public $data;
 
     public $user_id;
     public $batch;
@@ -28,25 +29,39 @@ class CreateTryout extends Component
 
     protected $listeners = ['dateSelected' => 'updateDate'];
 
-    public function mount()
+    public function mount($id)
     {
+        if (!Gate::allows('chapter_update')) {
+            abort(403);
+        }
+
         $this->users = User::where('group_class', 2)->orderBy('name', 'ASC')->get();
+        $this->data = NilaiTryout::find($id);
+
+        $this->user_id = $this->data->user_id;
+        $this->batch = $this->data->batch;
+        $this->tanggal_pelaksanaan = $this->data->tanggal_pelaksanaan;
+        $this->subtes_pu = $this->data->subtes_pu;
+        $this->subtes_ppu = $this->data->subtes_ppu;
+        $this->subtes_pbm = $this->data->subtes_pbm;
+        $this->subtes_pk = $this->data->subtes_pk;
+        $this->subtes_litbindo = $this->data->subtes_litbindo;
+        $this->subtes_litbing = $this->data->subtes_litbing;
+        $this->subtes_pm = $this->data->subtes_pm;
+        $this->jumlah_benar = $this->data->jumlah_benar;
+        $this->rata_rata = $this->data->rata_rata;
     }
 
     public function render()
     {
-
-        return view('nilai-tryout.create')->layout('layouts.app');
+        return view('nilai-tryout.edit')->layout('layouts.app');
     }
 
-    public function save()
+    public function update()
     {
-        if (!Gate::allows('chapter_create')) {
-            abort(403);
-        }
 
         // $this->validate();
-        NilaiTryout::create([
+        $this->data->update([
             'user_id' => $this->user_id,
             'batch' => $this->batch,
             'subtes_pu' => $this->subtes_pu,

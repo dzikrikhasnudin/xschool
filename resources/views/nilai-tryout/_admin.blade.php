@@ -4,7 +4,7 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold my-auto text-lg md:text-xl text-gray-800 leading-tight text-center mb-3">
-                Nilai Tryout
+                Nilai Tryout #{{ $batch }}
             </h2>
 
             @can('user_show')
@@ -48,8 +48,8 @@
 
                     <select wire:model="sort"
                         class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ">
-                        <option value="ASC">Urutkan A-Z</option>
-                        <option value="DESC" selected>Urutkan Z-A</option>
+                        <option value="ASC">Urutkan Terendah</option>
+                        <option value="DESC" selected>Urutkan Tertinggi</option>
                     </select>
 
                     {{-- Search Box --}}
@@ -77,7 +77,7 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
                                 <th scope="col" class="p-2 text-center">
-                                    No
+                                    Peringkat
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     Nama Siswa
@@ -96,17 +96,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                            $index = 1;
-                            @endphp
-                            @forelse ($scores as $score)
+                            @forelse ($scores as $rank => $score)
                             <tr class="bg-white border-b" wire:key='{{ $score->id }}'>
                                 <td scope="col" class="p-2 text-center">
-                                    {{ $index++ }}
+                                    {{ $rank + 1 }}
                                 </td>
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $score->user->name }}
+                                    {{ ucwords(strtolower($score->user->name)) }}
                                 </th>
 
                                 <td class="px-6 py-4 text-center">
@@ -117,15 +114,15 @@
                                 </td>
                                 @can('chapter_create')
                                 <td class="px-6 py-4 flex gap-2 text-white justify-center">
-
-                                    {{-- Edit --}}
-                                    <button onclick="#"
-                                        class="bg-yellow-400 px-2 py-1 rounded hover:bg-yellow-500 transition duration-300">
-                                        <i class="fa-solid fa-pen-to-square m-auto "></i>
-                                    </button>
                                     @php
                                     $scoreId = $score->id;
                                     @endphp
+                                    {{-- Edit --}}
+                                    <a href="{{ route('nilai-tryout.edit', $scoreId) }}"
+                                        class="bg-yellow-400 px-2 py-1 rounded hover:bg-yellow-500 transition duration-300">
+                                        <i class="fa-solid fa-pen-to-square m-auto "></i>
+                                    </a>
+
                                     <button wire:click="$emit('triggerDelete', {{ $scoreId }})"
                                         class="bg-red-600 px-2 py-1 rounded hover:bg-red-700 transition duration-300">
                                         <i class="fa-solid fa-trash"></i>

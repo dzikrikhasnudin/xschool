@@ -21,6 +21,10 @@ class DetailTryout extends Component
 
         $this->nilaiTryout = NilaiTryout::where('batch', $this->batch)->where('user_id', $this->user->id)->first();
 
+        if ($this->nilaiTryout == null && $this->user->getRoleNames()->first() == 'Student') {
+            abort(404);
+        }
+
         if ($this->user->getRoleNames()->first() == 'SuperAdmin') {
             $this->isAdmin = true;
         }

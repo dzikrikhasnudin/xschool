@@ -12,10 +12,12 @@ class DetailAdmin extends Component
     use WithPagination;
 
     public $batch;
+    public $sort = 'DESC';
+    public $paginate = 8;
 
     public function render()
     {
-        $scores = NilaiTryout::where('batch', $this->batch)->paginate(5);
+        $scores = NilaiTryout::where('batch', $this->batch)->orderBy('rata_rata', $this->sort)->paginate($this->paginate);
 
 
         return view('nilai-tryout._admin', [
