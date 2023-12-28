@@ -18,17 +18,22 @@
                     </div>
                 </div>
                 @endforeach
+                <hr class="my-3">
+                <h3 class="font-bold text-lg text-teal-700 mt-4 mb-1">Peringkat Kamu</h3>
                 <div
-                    class="flex items-center justify-between p-2 border gap-2 border-gray-200 rounded-lg shadow-sm mb-2">
+                    class="bg-teal-500 text-white flex items-center justify-between p-2 border gap-2 border-gray-200 rounded-lg shadow-sm mb-2">
                     <div class="flex gap-4 items-center">
-                        <p class="bg-gray-200 rounded-full px-2 py-1 text-sm">{{ $userRank }}</p>
+                        <p class="bg-gray-100 rounded-full px-2 py-1 text-sm text-gray-700">{{ $userRank }}</p>
                         <p class="font-semibold">{{ ucwords(strtolower($userName)) }}</p>
                     </div>
 
-                    <div class="bg-teal-100 text-teal-700 px-3 py-2 rounded-xl font-medium">
+                    <div class="bg-teal-50 text-teal-700 px-3 py-2 rounded-xl font-medium">
                         {{ $userScore }}
                     </div>
                 </div>
+                <hr class="my-3">
+                <a href="{{ route('nilai-tryout.detail', ['batch' => $userBatch, 'username' => Auth::user()->username]) }}"
+                    class=" bg-gray-200 hover:bg-gray-300 transition-all duration-200 font-semibold  px-4 py-2 text-center rounded-lg ml-auto block">Kembali</a>
 
             </div>
         </div>

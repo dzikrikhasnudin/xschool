@@ -12,6 +12,7 @@ class Leaderboard extends Component
     public $userRank;
     public $userScore;
     public $userName;
+    public $userBatch;
 
 
     public function mount($batch)
@@ -33,6 +34,7 @@ class Leaderboard extends Component
                 $this->userRank = $rank + 1;
                 $this->userScore = $data->rata_rata;
                 $this->userName = $data->user->name;
+                $this->userBatch = $data->batch;
             }
         }
 
