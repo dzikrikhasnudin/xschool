@@ -31,11 +31,12 @@
                             $carbon::parse($data->tanggal_pelaksanaan)->isoFormat('D MMMM Y') }}
                         </p>
                     </div>
-                    {{-- <a
-                        href="{{ route('nilai-tryout.detail', ['batch' => $data->batch, 'username' => Auth::user()->username]) }}"
+                    @if (Auth::user()->getRoleNames()->first() == 'SuperAdmin')
+                    <a href="{{ route('nilai-tryout.detail', ['batch' => $data->batch, 'username' => Auth::user()->username]) }}"
                         class=" text-white bg-teal-400 px-4 py-2 rounded-lg hover:bg-teal-500 transition-all duration-200"
                         disabled>Lihat
-                        Hasil</a> --}}
+                        Hasil</a>
+                    @else
                     <button disabled type="button"
                         class="text-white bg-teal-400 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2  inline-flex items-center">
                         <svg aria-hidden="true" role="status" class="inline w-4 h-4 mr-2 text-white animate-spin"
@@ -49,6 +50,9 @@
                         </svg>
                         Loading...
                     </button>
+                    @endif
+
+
                 </div>
                 <hr class="my-2">
                 @empty
