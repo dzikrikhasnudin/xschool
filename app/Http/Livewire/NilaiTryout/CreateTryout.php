@@ -31,6 +31,10 @@ class CreateTryout extends Component
     public function mount()
     {
         $this->users = User::where('group_class', 2)->orderBy('name', 'ASC')->get();
+
+        if (!Gate::allows('chapter_create')) {
+            return redirect()->route('nilai-tryout.index');
+        }
     }
 
     public function render()

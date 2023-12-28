@@ -14,7 +14,6 @@ class Leaderboard extends Component
     public $userName;
     public $userBatch;
 
-
     public function mount($batch)
     {
         $this->batch = NilaiTryout::where('batch', $batch)->exists();
@@ -37,7 +36,6 @@ class Leaderboard extends Component
                 $this->userBatch = $data->batch;
             }
         }
-
 
         return view('nilai-tryout.leaderboard', compact('averageScores'))->layout('layouts.app');
     }
