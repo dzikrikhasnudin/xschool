@@ -20,8 +20,8 @@
             </p>
         </div>
 
-        <div class="flex flex-col gap-0  text-center px-3 py-2 rounded-xl bg-teal-500 text-white">
-            <small class="text-xs ">Rata-rata</small>
+        <div class="flex flex-col gap-0  text-center px-2 py-2 rounded-xl bg-teal-500 text-white">
+            <small class="text-xs">Rata-rata</small>
             <span class="font-bold text-2xl">{{ $nilaiTryout->rata_rata }}</span>
         </div>
 
