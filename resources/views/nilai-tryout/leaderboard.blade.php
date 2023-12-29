@@ -18,6 +18,7 @@
                     </div>
                 </div>
                 @endforeach
+                @if (Auth::user()->getRoleNames()->first() == "Student")
                 <hr class="my-3">
                 <h3 class="font-bold text-lg text-teal-700 mt-4 mb-1">Peringkat Kamu</h3>
                 <div
@@ -32,8 +33,10 @@
                     </div>
                 </div>
                 <hr class="my-3">
+
                 <a href="{{ route('nilai-tryout.detail', ['batch' => $userBatch, 'username' => Auth::user()->username]) }}"
                     class=" bg-gray-200 hover:bg-gray-300 transition-all duration-200 font-semibold  px-4 py-2 text-center rounded-lg ml-auto block">Kembali</a>
+                @endif
 
             </div>
         </div>
