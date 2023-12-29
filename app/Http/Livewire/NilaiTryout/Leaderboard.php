@@ -16,9 +16,9 @@ class Leaderboard extends Component
 
     public function mount($batch)
     {
-        $this->batch = NilaiTryout::where('batch', $batch)->exists();
+        $batchExist = NilaiTryout::where('batch', $this->batch)->exists();
 
-        if (!$this->batch) {
+        if (!$batchExist) {
             abort(404);
         };
     }
@@ -26,7 +26,8 @@ class Leaderboard extends Component
     public function render()
     {
 
-        $averageScores = NilaiTryout::select(['user_id', 'batch', 'rata_rata'])->orderBy('rata_rata', 'DESC')->get();
+        $averageScores = NilaiTryout::where('batch', $this->batch)->select(['user_id', 'batch', 'rata_rata'])->orderBy('rata_rata', 'DESC')->get();
+
 
         foreach ($averageScores as $rank => $data) {
             if ($data->user_id == Auth::user()->id) {

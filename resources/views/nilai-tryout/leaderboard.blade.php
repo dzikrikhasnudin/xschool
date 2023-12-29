@@ -2,7 +2,7 @@
     <div class="py-6 mt-14">
         <div class="max-w-3xl sm:px-6 lg:px-4">
             <div class="bg-white p-4 mx-4 rounded-lg mb-3">
-                <h2 class="font-bold text-2xl text-center text-teal-500">Leaderboard Try Out #3</h2>
+                <h2 class="font-bold text-2xl text-center text-teal-500">Leaderboard Try Out #{{ $batch }}</h2>
                 <hr class="my-3">
 
                 @foreach ($averageScores->take(15) as $rank => $score)
